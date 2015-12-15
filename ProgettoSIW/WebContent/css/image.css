@@ -3,9 +3,30 @@
 html, body { /* se non metto html non funziona height*/
 	height: 100%;
 	width: 100%;
-	background-color: #334f74;
 	
 	margin: 0px;
+}
+
+#imageIndexUp {
+	position:absolute;
+	left:0.5%;
+	top:1%;
+	width:98.8%;
+	height:75%;
+	
+	border: 2px solid #000;
+	background-color: #5C697A;
+	z-index: -1;
+	
+	opacity: 0.6;
+}
+
+#imageIndexBottom {
+	width:100%;
+	height:100%;
+	position:fixed;
+	background-color: #334f74;
+	z-index: -3;
 }
 
 #imageIndex {
@@ -19,7 +40,8 @@ html, body { /* se non metto html non funziona height*/
 	/*padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;*/
-	opacity: 0.6;
+	
+	z-index: -2;
     
     
 }
@@ -41,9 +63,8 @@ html, body { /* se non metto html non funziona height*/
 }
 #mensaText {
 	color: #fff;
-	position: absolute;
-	left: 12%;
-	bottom: 2%;
+	display: block;
+	text-align: center;
 }
 
 .mensaMartensson {
