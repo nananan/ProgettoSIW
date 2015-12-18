@@ -3,7 +3,9 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="css/image.css">
 	<link rel="stylesheet" type="text/css" href="css/mensaCR.css">
+	<link rel="stylesheet" type="text/css" href="css/star-rating.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="Javascript/pageMenu.js"></script>
 	<title>Mensa Centro Residenziale</title>
 </head>
 <body>
@@ -11,7 +13,7 @@
 	<ul id="menu">
 		<li><a href="index.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
-		<li><a href="#">Dishes</a></li>
+		<li><a href="#">Altro</a></li>
 	</ul>
 	
 	
@@ -41,8 +43,17 @@
 		},  3000);
 	</script>
 
-	<p id=dayMenu><i>Day Menu</i></p>
-
-
+	
+	<ul id="menuDishes">
+		<li onclick="showDailyMenu()" id="dayMenu">Menu del Giorno</li>
+		<li onclick="showChoiseMenu()" id="choiseDishes">Scelta dei piatti</li>
+		<li onclick="showBestDishes()" id="bestDishes">Migliori Piatti</li>
+	</ul>
+	
+	<div id="panelForMenu">
+		<img src="images/forMenuUp.png">
+		<div class="quad"></div>
+		<div class="closeButton"><img onclick="deletePanelMenu()" src="images/closeButton.png"></div>
+	</div>
 </body>
 </html>
