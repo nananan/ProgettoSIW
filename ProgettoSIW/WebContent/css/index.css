@@ -164,3 +164,10 @@ p#nameMense{
     top: 3%;
 }
 
+
+
+#nameUser {
+	position: absolute;
+	top: 2%;
+	right: 10%;
+}

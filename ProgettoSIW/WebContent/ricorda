@@ -1,4 +1,24 @@
- var percentuage = (57 * value.rating) / 5; */
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*     $("div.mensaCR").mouseenter(function(){
+        $(this).css("-webkit-transform: scale(1.2);"+
+        "-moz-transform: scale(1.2); -ms-transform: scale(1.2);"+
+    	"-o-transform: scale(1.2); transform: scale(1.2);"+
+    	"display: none;");
+    	
+        }.mouseleave(function(){
+    });  */
+$("div.mensaCR").mouseover(function() {
+	$(this).css("display", "none");})
+})
+.mouseout(function() {
+    $(this).css("background-color", "pink");});
+});
+</script>
+
+**************************************************************************************************************************************************************
+
+var percentuage = (57 * value.rating) / 5; */
 /* $('#panelForMenu').append('<div id="rating" class="rating-container rating-gly-star" data-content="" ><div class="rating-stars"'+
 'data-content="" style="width:' + 100 + '%; left:'+(posLeft)+'%;"></div></div>'); */
 

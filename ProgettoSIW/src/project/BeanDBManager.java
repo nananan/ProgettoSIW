@@ -14,6 +14,7 @@ import java.util.List;
 
 import project.beans.Category;
 import project.beans.Dish;
+import project.beans.User;
 
 public class BeanDBManager extends AbstractDBManager
 {
@@ -68,6 +69,36 @@ public class BeanDBManager extends AbstractDBManager
 		}
 		return toReturn;
 	}
+    
+
+	public boolean saveUser(final User user)
+    {
+		String procedure = "{call addUser(?,?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setString(1, user.getUsername());
+			callableStatement.setString(2, user.getPassword());
+			callableStatement.setString(3, user.getEmail());
+			callableStatement.executeUpdate();
+			return true;
+        }
+        catch (final SQLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        finally
+        {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+        }
+		return false;
+    }
+    
+    
     
 //    public int countAllUser()
 //    {
