@@ -19,14 +19,14 @@ public class _TestJSON
         Date date = new Date();
         System.out.println(dbManager.getMenuDaily(dateFormat.format(date)));
         
-    	try {
-			JsonNode arrNode = new ObjectMapper().readTree(dbManager.getMenuDaily(dateFormat.format(date)));
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	try {
+//			JsonNode arrNode = new ObjectMapper().readTree(dbManager.getMenuDaily(dateFormat.format(date)));
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
 }

@@ -30,13 +30,20 @@ public class SignUp extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		User user = new User(request.getParameter("email"), request.getParameter("password"), request.getParameter("username"), "", "");
-
+		User user = null;
+		if (request.getParameter("social").equals("true"))
+			user  = new User(request.getParameter("name"), "",
+					request.getParameter("email"), "", request.getParameter("imageUrl"), request.getParameter("social"));
+		else
+			user  = new User(request.getParameter("username"), request.getParameter("password"),
+					request.getParameter("email"), "", "",request.getParameter("social"));
 		BeanDBManager.getInstance().saveUser(user);
-
-		HttpSession session = request.getSession();
+		BeanDBManager.getInstance().setImageProfile(user);
+		
+		HttpSession session = request.getSession(true);
 		session.setAttribute("user", user);
 		response.setCharacterEncoding("UTF-8");
 
+		response.getWriter().write(user.toJSON());
 	}
 }

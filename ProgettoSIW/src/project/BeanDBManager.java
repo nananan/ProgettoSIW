@@ -73,21 +73,47 @@ public class BeanDBManager extends AbstractDBManager
 
 	public boolean saveUser(final User user)
     {
-		String procedure = "{call addUser(?,?,?)}";
+		if (getUser(user.getUsername()) == null) {
+			String procedure = "{call addUser(?,?,?,?)}";
+			CallableStatement callableStatement = null;
+			final Connection connection = createConnection();
+			try
+			{
+				callableStatement = connection.prepareCall(procedure);
+				callableStatement.setString(1, user.getUsername());
+				callableStatement.setString(2, user.getPassword());
+				callableStatement.setString(3, user.getEmail());
+				callableStatement.setString(4, user.getSocial());
+				callableStatement.executeUpdate();
+				return true;
+	        }
+	        catch (final SQLException e)
+	        {
+	            e.printStackTrace();
+	        }
+	        finally
+	        {
+				closeStatement(callableStatement);
+				closeConnection(connection);
+	        }
+		}
+		return false;
+    }
+    
+    public boolean setImageProfile(final User user) {
+    	String procedure = "{call setImageProfile(?,?)}";
 		CallableStatement callableStatement = null;
 		final Connection connection = createConnection();
 		try
 		{
 			callableStatement = connection.prepareCall(procedure);
 			callableStatement.setString(1, user.getUsername());
-			callableStatement.setString(2, user.getPassword());
-			callableStatement.setString(3, user.getEmail());
+			callableStatement.setString(2, user.getImageUrl());
 			callableStatement.executeUpdate();
 			return true;
         }
         catch (final SQLException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         finally
@@ -95,10 +121,8 @@ public class BeanDBManager extends AbstractDBManager
 			closeStatement(callableStatement);
 			closeConnection(connection);
         }
-		return false;
+	return false;
     }
-    
-    
     
 //    public int countAllUser()
 //    {
@@ -333,7 +357,71 @@ public class BeanDBManager extends AbstractDBManager
         }
 
     }
+    
+    public User getUser(final String username)
+    {
+		User user = null;
+		final String query = "SELECT * FROM USER WHERE USERNAME = ?";
+        final Connection conn = createConnection();
 
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+				user = new User();
+				user.setUsername(rs.getString("USERNAME"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setEmail(rs.getString("EMAIL"));
+				user.setProfileName(rs.getString("PROFILE_NAME"));
+				user.setImageUrl(rs.getString("IMAGE_URL"));
+            }
+        }
+        catch (final SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResultSet(rs);
+            closeStatement(ps);
+            closeConnection(conn);
+        }
+		return user;
+    }
+
+    public User getUser(final String username, final String password)
+    {
+		User user = null;
+		final String query = "SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?";
+        final Connection conn = createConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+				user = new User();
+				user.setUsername(rs.getString("USERNAME"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setEmail(rs.getString("EMAIL"));
+				user.setProfileName(rs.getString("PROFILE_NAME"));
+				user.setImageUrl(rs.getString("IMAGE_URL"));
+            }
+        }
+        catch (final SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResultSet(rs);
+            closeStatement(ps);
+            closeConnection(conn);
+        }
+		return user;
+    }
 //    public boolean updateUser(final User user)
 //    {
 //        boolean res = false;

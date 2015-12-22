@@ -324,3 +324,40 @@ div.hr:before {
 border-radius: 10px!important; */
 }
 
+
+#userNotPresent {
+	width: 100%;	
+ 	max-width: 500px;
+	
+	padding: 20px;
+	margin: 0 auto;
+	
+	position: relative;
+	top: 10%;
+	
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	
+	-webkit-box-shadow: 0 0 5px 1px #333;
+	-moz-box-shadow: 0 0 5px 1px #333;
+	box-shadow: 0 0 5px 1px #333;
+	
+	background-color: #5C697A;
+}
+
+
+.closeButton img {
+	width: 5%;
+	height: 6%;
+	
+	position:absolute;
+	top: 1%;
+	right: 1%;
+}

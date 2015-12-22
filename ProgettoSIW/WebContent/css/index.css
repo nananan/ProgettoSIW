@@ -168,6 +168,15 @@ p#nameMense{
 
 #nameUser {
 	position: absolute;
-	top: 2%;
-	right: 10%;
+	top: 0%;
+	right: 7%;
+	
+	color: #fff;
+    display: block;
+    font-weight: bold;
+    line-height: 30px;
+    text-decoration: none;
+    width: 150px;
+    height: 30px;
+    text-align: center;
 }

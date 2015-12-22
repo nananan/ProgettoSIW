@@ -1,9 +1,13 @@
 <link rel="stylesheet" type="text/css" href="css/login.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="Javascript/login.js"></script>
 
 <div id="paneBottomLogin"></div>
 
 <div id="paneLogin">
+
+	<div class="closeButton"><img onclick="deletePanelLogin()" src="images/closeButton.png"></div>
+
 	<div class="txt">
 	    <input id="user" type="text" placeholder="Username" />
 	    <label for="user" class="entypo-user"></label>
@@ -15,7 +19,7 @@
 	</div>
 
 	<div class="buttons">
-	   <input type="button" value="Login" />
+	   <input onclick="executeLogin()" type="button" value="Login" />
 	</div>
    
 	<span>
@@ -27,10 +31,14 @@
 	</div>
 
 	<div class="social">
-	    <a href="" class="facebook"></a>
+	    <a onclick="Login()" class="facebook"></a>
 	    <a href="javascript:void(0)" class="twitter"></a>
 	    <a href="javascript:void(0)" class="googleplus"></a>
 	</div>
+	
+	<div id="fb-root"></div>
+<!-- 	<script>
 
+	</script> -->
 
 </div>

@@ -9,8 +9,10 @@ public class User implements Serializable {
 	protected String email;
 	protected String profileName;
 	protected String imageUrl;
-
-	public User(String username, String password, String email, String profileName, String imageUrl)
+	protected String social;
+	
+	public User(String username, String password, String email, String profileName, String imageUrl,
+			String social)
 	{
 		super();
 		this.username = username;
@@ -18,6 +20,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.profileName = profileName;
 		this.imageUrl = imageUrl;
+		this.social = social;
 	}
 
 	public User()
@@ -76,17 +79,23 @@ public class User implements Serializable {
 		this.imageUrl = imageUrl;
 	}
 
-//	public String toJSON()
-//	{
-//		return JsonConverter.converterToJson(this);
-//
-//	}
-
-	@Override
-	public String toString()
+	public String getSocial() {
+		return social;
+	}
+	
+	public String toJSON()
 	{
-		return "User [username=" + username + ", password=" + password + ", profileName=" + profileName + ", imageUrl=" + imageUrl
-				+ ", email=" + email+"]";
+		return "{username:'" + username + "', password:'" + password + "', profileName:'" + profileName + "', imageUrl:'" + imageUrl
+				+ "', email:'" + email+"', social:'"+social+"'}";
+
 	}
 
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password
+				+ ", email=" + email + ", profileName=" + profileName
+				+ ", imageUrl=" + imageUrl + ", social=" + social + "]";
+	}
+
+	
 }
