@@ -6,7 +6,7 @@ html, body {
 	
 	margin: 0px;
 	
-	background-color: #5C697A;
+	background-color: #6E1414;
 }
 
 #slideshow { 
@@ -39,7 +39,7 @@ ul#menuDishes {
 }
   
 ul#menuDishes li {
-    background-color: #334f74;
+    background-color: #800E0E;
     border-bottom: 5px solid #54BAE2;
     display: block;
     width: 150px;

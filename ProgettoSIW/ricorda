@@ -36,3 +36,6 @@ $('#panelForMenu').append('<fieldset class="rating" style="left:'+(posLeft)+'%">
 '</fieldset>'); 
 
 **************************************************************************************************************************************************************
+
+
+ class="rating" value="'+value.rating+'" min="0" max="5" step="0.5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa

@@ -35,7 +35,7 @@
 	-moz-box-shadow: 0 0 5px 1px #333;
 	box-shadow: 0 0 5px 1px #333;
 	
-	background-color: #5C697A;
+	background-color: #862e2e;
 	
 }
 
@@ -80,7 +80,7 @@ input[type="button"] {
     cursor: pointer;
     
     color: #FFF;
-    text-shadow: 0 1px #334f74;
+    text-shadow: 0 1px #800E0E;
     font-size: 1.2em;
     
     border: 0 none;
@@ -89,36 +89,36 @@ input[type="button"] {
     border-radius: 4px;
     outline: none;
     
-    background-color: #334f74;
+    background-color: #800E0E;
     
-    -webkit-box-shadow: 0 2px #334f74, inset 0 0 #334f74;
-    -moz-box-shadow: 0 2px #334f74, inset 0 0 #334f74;
-    box-shadow: 0 2px #334f74, inset 0 0 #334f74;
+    -webkit-box-shadow: 0 2px #800E0E, inset 0 0 #800E0E;
+    -moz-box-shadow: 0 2px #800E0E, inset 0 0 #800E0E;
+    box-shadow: 0 2px #800E0E, inset 0 0 #800E0E;
 }
   
 input[type="button"]:hover, input[type="button"]:focus {
-  background-color: darken(#334f74, 5%);
+  background-color: darken(#800E0E, 5%);
   -webkit-box-shadow: 
-    0 2px darken(#334f74, 5%),
-    inset 0 0 #334f74;
+    0 2px darken(#800E0E, 5%),
+    inset 0 0 #800E0E;
   -moz-box-shadow: 
-    0 2px darken(#334f74, 5%),
-    inset 0 0 #334f74;
+    0 2px darken(#800E0E, 5%),
+    inset 0 0 #800E0E;
   box-shadow: 
-    0 2px darken(#334f74, 5%),
-    inset 0 0 #334f74;
+    0 2px darken(#800E0E, 5%),
+    inset 0 0 #800E0E;
 }
 
 input[type="button"]:active {
   -webkit-box-shadow: 
-    0 0 darken(#334f74, 5%),
-    inset 0 1px darken(#334f74, 5%);
+    0 0 darken(#800E0E, 5%),
+    inset 0 1px darken(#800E0E, 5%);
   -moz-box-shadow: 
-    0 0 darken(#334f74, 5%),
-    inset 0 1px darken(#334f74, 5%);
+    0 0 darken(#800E0E, 5%),
+    inset 0 1px darken(#800E0E, 5%);
   box-shadow: 
-    0 0 darken(#334f74, 5%),
-    inset 0 1px darken(#334f74, 5%);
+    0 0 darken(#800E0E, 5%),
+    inset 0 1px darken(#800E0E, 5%);
   
   -webkit-transform: translateY(2px);
   -moz-transform: translateY(2px);
@@ -135,7 +135,7 @@ a.register {
 	top: 55%;
 	left: 80%;
 	
-  color: #444;
+  color: #000000;
   text-decoration: none;
     
   -webkit-transition: all 0s;
@@ -151,7 +151,7 @@ a.register:before {
 }
 
 a.register:hover {
-  color: #334f74;
+  color: #800E0E;
   text-shadow: 0 1px #555;
 }
 
@@ -227,7 +227,7 @@ div.hr:before {
 
 .facebook {
 	background-image: url("../images/login/facebook.png");
-	background-size: 90% 90%;
+	background-size: 80% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -245,7 +245,7 @@ div.hr:before {
 
 .facebook:hover {
 	background-image: url("../images/login/facebook-white.png");
-	background-size: 90% 90%;
+	background-size: 80% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -259,7 +259,7 @@ div.hr:before {
 
 .twitter {
 	background-image: url("../images/login/twitter.png");
-	background-size: 85% 85%;
+	background-size: 80% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -277,7 +277,7 @@ div.hr:before {
 
 .twitter:hover {
 	background-image: url("../images/login/twitter-white.png");
-	background-size: 85% 85%;
+	background-size: 80% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -353,9 +353,9 @@ border-radius: 10px!important; */
 }
 
 
-.closeButton img {
+.closeButtonLogin img {
 	width: 5%;
-	height: 6%;
+	height: 7%;
 	
 	position:absolute;
 	top: 1%;

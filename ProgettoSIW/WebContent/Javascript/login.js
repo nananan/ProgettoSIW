@@ -20,9 +20,12 @@ function deletePanelRegister() {
 
 function insertPaneForRegister() {
 	$.ajax({
-		  url: "register.html"
+		  url: "register.html",
+		  success: function(data) {
+			  $('body').append(data)
+		  }
 		}).done(function(data){
-		$('body').append(data);
+			$('#register').toggle();
 	});
 }
 

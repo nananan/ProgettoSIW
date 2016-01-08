@@ -9,7 +9,7 @@
 	top: 20%;
 	right: 1%;
 	
-	background-color: #5e6f85;
+	background-color: #862e2e;
 
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -30,7 +30,7 @@
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent; 
 	
-	border-right:10px solid #5e6f85; 
+	border-right:10px solid #862e2e; 
 }
 
 
@@ -40,9 +40,9 @@
     margin: 10px auto;
     margin-bottom: 10px;
     padding: 30px 25px;
-    background: #334f74 none repeat scroll 0% 0%;
+    background: #800E0E none repeat scroll 0% 0%;
     width: 40%;
-    border: 5px solid #363D4D;
+    border: 5px solid #5D1012;
     box-shadow: 0px 0px 5px #272727;
     border-radius: 80px;
 }
@@ -58,7 +58,7 @@ p {
 
 .form {
     text-align: center;
-    background-color: #5e6f85;
+    background-color: #862e2e;
 }
 
 div.form input[type="text"] {
@@ -73,7 +73,7 @@ div.form input[type="text"] {
     text-align: left;
     margin-top: 5px;
     transition: all 0.5s ease 0s;
-    background-color: #5e6f85;
+    background-color: #862e2e;
     width: 85%;
 }
 
@@ -90,7 +90,7 @@ div.form input[type="password"] {
     text-align: left;
     margin-top: 5px;
     transition: all 0.5s ease 0s;
-    background-color: #5e6f85;
+    background-color: #862e2e;
     width: 85%;
 }
 
@@ -107,18 +107,19 @@ div.form input[type="password"] {
     transition: all 0.5s ease 0s;
     outline: medium none;
     cursor: pointer;
-    background: #334f74 none repeat scroll 0% 0%;
+    background: #800E0E none repeat scroll 0% 0%;
 	box-shadow: 0px 2px 2px rgba(5, 5, 5, 0.21);
     letter-spacing: 2px;
 }
 
 
-.closeButton img {
+.closeButtonRegister img {
 	width: 6%;
-	height: 6%;
+	height: 5%;
 	
 	position:absolute;
 	top: 1%;
 	right: 1%;
+	background-color: #862e2e;
 }
 
