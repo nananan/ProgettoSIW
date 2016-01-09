@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8"/>	
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/mensaCR.css">
-	<link rel="stylesheet" type="text/css" href="css/star-rating.css">
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="Javascript/pageMenu.js"></script>
+	<script type="text/javascript" src="Javascript/login.js"></script>
+	<script type="text/javascript" src="Javascript/loginManager.js"></script>
 	<title>Mensa Centro Residenziale</title>
 </head>
 <body>
 
+	<script type="text/javascript">
+		var json = eval("("+localStorage["user"]+")");
+	
+		if (json != null)
+			simpleLogin(json);
+	</script>
+	
+
 	<ul id="menu">
-		<li><a href="index.html">Home</a></li>
+		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
 		<li><a href="#">Altro</a></li>
+		<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
 	</ul>
 	
 	
@@ -47,7 +58,7 @@
 	<ul id="menuDishes">
 		<li onclick="showDailyMenu()" id="dayMenu">Menu del Giorno</li>
 		<li onclick="showChoiseMenu()" id="choiseDishes">Scelta dei piatti</li>
-		<li onclick="showBestDishes()" id="bestDishes">Migliori Piatti</li>
+		<li onclick="showBestDishes()" id="bestDishes">Piatti Migliori</li>
 	</ul>
 	
 	<div id="panelForMenu">

@@ -17,6 +17,7 @@ function createAccount() {
 				$('#paneLogin').toggle();
 				$('#paneBottomLogin').toggle();
 				$('body').append('<div id="nameUser"><p>'+$('#username').val()+'</p></div>');
+				deleteLoginAndInsertNameUser($('#username').val());
 			},
 			 error: function (data) {
 	              alert("ERRORE");
@@ -31,4 +32,13 @@ function chooseProfileImage() {
 		}).done(function(data){
 		$('body').append(data);
 	});
+}
+
+
+function deleteLoginAndInsertNameUser(username) {
+	$('#paneLogin').remove();
+	$('#paneBottomLogin').remove();
+	$('#menu li').eq(3).remove();
+	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
+	$('body').append('<div id="nameUser"><p>'+username+'</p></div>');
 }

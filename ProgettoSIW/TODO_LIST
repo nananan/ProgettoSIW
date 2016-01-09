@@ -1,9 +1,7 @@
 
-- votazione piatti
+- dopo votazione, media
 
 - commenti ai piatti
-
-- i migliori piatti
 
 (nel menu se ci sono più di 3 piatti deve andare a capo)
 
@@ -19,3 +17,7 @@
 
 
 - parte amministratore
+
+
+
+- webService

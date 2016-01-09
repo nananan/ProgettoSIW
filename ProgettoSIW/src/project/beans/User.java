@@ -11,8 +11,8 @@ public class User implements Serializable {
 	protected String imageUrl;
 	protected String social;
 	
-	public User(String username, String password, String email, String profileName, String imageUrl,
-			String social)
+	public User(String username, String password, String email, String profileName, 
+			String imageUrl, String social)
 	{
 		super();
 		this.username = username;

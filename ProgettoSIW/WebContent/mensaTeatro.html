@@ -4,15 +4,27 @@
  	<meta charset="UTF-8"/>	
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/mensaCR.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="Javascript/pageMenu.js"></script>
+	<script type="text/javascript" src="Javascript/login.js"></script>
+	<script type="text/javascript" src="Javascript/loginManager.js"></script>
 	<title>Mensa Martensson</title>
 </head>
 <body>
 
+	<script type="text/javascript">
+		var json = eval("("+localStorage["user"]+")");
+	
+		if (json != null)
+			simpleLogin(json);
+	</script>
+	
+
 	<ul id="menu">
-		<li><a href="index.html">Home</a></li>
+		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
 		<li><a href="#">Altro</a></li>
+		<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
 	</ul>
 	
 	
@@ -28,7 +40,6 @@
 	   </div>
 	</div>
 
-	<script type="text/javascript" src=" http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript">
 		$("#slideshow > div:gt(0)").hide();
 	
@@ -46,13 +57,25 @@
 	<ul id="menuDishes">
 		<li onclick="showDailyMenu()" id="dayMenu">Menu del Giorno</li>
 		<li onclick="showChoiseMenu()" id="choiseDishes">Scelta dei piatti</li>
-		<li onclick="showBestDishes()" id="bestDishes">Migliori Piatti</li>
+		<li onclick="showBestDishes()" id="bestDishes">Piatti Migliori</li>
 	</ul>
 	
 	<div id="panelForMenu">
 		<img src="images/forMenuUp.png">
-		<div class="quad"></div>
+		<div id="quadMenu"></div>
 		<div class="closeButton"><img onclick="deletePanelMenu()" src="images/closeButton.png"></div>
+	</div>
+	
+	<div id="panelForChooseMenu">
+		<img src="images/forMenuUp.png">
+		<div id="quad"></div>
+		<div class="closeButton"><img onclick="deletePanelChooseMenu()" src="images/closeButton.png"></div>
+	</div>
+	
+	<div id="panelForBestDish">
+		<img src="images/forMenuUp.png">
+		<div id="quadBestDish"></div>
+		<div class="closeButton"><img onclick="deletePanelBestDish()" src="images/closeButton.png"></div>
 	</div>
 </body>
 </html>

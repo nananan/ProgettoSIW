@@ -1,16 +1,4 @@
-
-$.ajax({
-	  url: "index.html"
-	}).done(function(data){
-	$('body').append(data);
-	var json = eval("("+localStorage["user"]+")");
-	
-	if (json != null) {
-			simpleLogin(json);
-		}
-});
-
-	
+ 
 function simpleLogin(json) {
 	$.ajax({
 		type : "POST",
@@ -30,4 +18,3 @@ function simpleLogin(json) {
         }
 	});
 }
-

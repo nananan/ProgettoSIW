@@ -39,3 +39,29 @@ $('#panelForMenu').append('<fieldset class="rating" style="left:'+(posLeft)+'%">
 
 
  class="rating" value="'+value.rating+'" min="0" max="5" step="0.5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa
+
+ 
+ 
+ ******************************************************
+ 
+ //	console.log(document.addEventListener("click", function(){  }));
+//	console.log(document.getElementById(cont));
+
+//	var selObj = window.getSelection(); 
+//	console.log(selObj);
+
+//	            	document.appendChild(document.getElementById(contImage).setAttribute("id", contImage));
+//	            	console.log(document.getElementById(contImage));
+//	            	document.getElementById(contImage).setAttribute("id", contImage);
+//	            	document.getElementById(contImage).addEventListener("onclick", setBorderSelect(posLeft));
+//	            	$(document.getElementById(contImage).getAttribute("id")).click(setBorderSelect(posLeft));
+	
+		
+
+		
+
+
+
+
+
+ 

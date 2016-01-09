@@ -5,6 +5,8 @@
 	height: 100%;
 	
 	position: absolute;
+	top:0%;
+	
 	background-color: #5C697A;
 	opacity: 0.5;
 }
@@ -16,8 +18,9 @@
 	padding: 20px;
 	margin: 0 auto;
 	
-	position: relative;
+	position: absolute;
 	top: 50%;
+	left: 30%;
 	
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);

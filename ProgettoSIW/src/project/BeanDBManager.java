@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.beans.Category;
+import project.beans.CommentDish;
 import project.beans.Dish;
 import project.beans.User;
 
@@ -123,6 +124,34 @@ public class BeanDBManager extends AbstractDBManager
         }
 	return false;
     }
+    
+    
+//    public boolean insertComment(CommentDish comment)
+//    {
+//		String procedure = "{call insertComment(?,?,?)}";
+//		CallableStatement callableStatement = null;
+//		final Connection connection = createConnection();
+//		try
+//		{
+//			callableStatement = connection.prepareCall(procedure);
+//			callableStatement.setInt(1, comment.getDishId());
+//			callableStatement.setString(2, comment.getUsername());
+//			callableStatement.setString(3, comment.getComment());
+//			callableStatement.executeUpdate();
+//			return true;
+//        }
+//        catch (final SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        finally
+//        {
+//			closeStatement(callableStatement);
+//			closeConnection(connection);
+//        }
+//		return false;
+//    }
+    
     
 //    public int countAllUser()
 //    {
