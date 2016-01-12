@@ -4,6 +4,7 @@
 	<meta charset="UTF-8"/>	
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/mensaCR.css">
+	<link rel="stylesheet" type="text/css" href="css/comment.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="Javascript/pageMenu.js"></script>
 	<script type="text/javascript" src="Javascript/login.js"></script>
@@ -63,8 +64,20 @@
 	
 	<div id="panelForMenu">
 		<img src="images/forMenuUp.png">
-		<div class="quad"></div>
+		<div id="quadMenu"></div>
 		<div class="closeButton"><img onclick="deletePanelMenu()" src="images/closeButton.png"></div>
+	</div>
+	
+	<div id="panelForChooseMenu">
+		<img src="images/forMenuUp.png">
+		<div id="quad"></div>
+		<div class="closeButton"><img onclick="deletePanelChooseMenu()" src="images/closeButton.png"></div>
+	</div>
+	
+	<div id="panelForBestDish">
+		<img src="images/forMenuUp.png">
+		<div id="quadBestDish"></div>
+		<div class="closeButton"><img onclick="deletePanelBestDish()" src="images/closeButton.png"></div>
 	</div>
 </body>
 </html>

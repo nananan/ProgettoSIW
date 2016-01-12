@@ -1,23 +1,15 @@
 
+- quando viene ricaricata la sceltaDelMenu, si perdono i piatti scelti perchè viene sovrascritto!!! AAAAAAH >.<
+[mantenere anche i punti ovviamente]
+
+
+- fare scegliere foto profilo alla registraztione
+
+- mettere foto all'utente
+
+- parte amministratore [VAAAADIN]
+
+
+
+- webService (media volendo)
 - dopo votazione, media
-
-- commenti ai piatti
-
-(nel menu se ci sono più di 3 piatti deve andare a capo)
-
-
-
-
-
-
-
-
-- vedere jsp... non ne ho ancora usate!!! >.<
-
-
-
-- parte amministratore
-
-
-
-- webService

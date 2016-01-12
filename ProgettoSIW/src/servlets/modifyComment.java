@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import project.JsonDBManager;
 
-@WebServlet("/addRating")
-public class addRating extends HttpServlet {
+@WebServlet("/modifyComment")
+public class modifyComment extends HttpServlet {
 	
 	private static final long serialVersionUID = 100000L;
 
@@ -24,12 +24,11 @@ public class addRating extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		if (request.getParameter("dishId") != null) {
-			int dishId = Integer.parseInt(request.getParameter("dishId"));
-			String username = request.getParameter("username");
-			float rating = Float.parseFloat(request.getParameter("rating"));
-			
-			JsonDBManager.getInstance().addRating(dishId, username, rating);
-		}
+		int commentId = Integer.parseInt(request.getParameter("commentId"));
+		String commentText = request.getParameter("comment");
+		
+		boolean comment = JsonDBManager.getInstance().modifyComment(commentId,commentText);
+		response.setCharacterEncoding("UTF-8");
+//		response.getWriter().write(comment);
 	}
 }

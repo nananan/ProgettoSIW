@@ -124,7 +124,151 @@ public class JsonDBManager extends AbstractDBManager
 		}
 		return json;
 	}
+	
+	public String getIdComment(int dishId, String user, String comment, String date) {
+		String json = null;
+		final String query = "SELECT ID FROM COMMENTDISH WHERE COMMENTDISH.DISH=? AND COMMENTDISH.USER=?"
+				+ "AND COMMENTDISH.COMMENT=? AND COMMENTDISH.COMMENTDATE=?";
+		final Connection conn = createConnection();
 
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, dishId);
+			ps.setString(2, user);
+			ps.setString(3, comment);
+			ps.setString(4, date);
+			
+			rs = ps.executeQuery();
+
+			json = toJSON(rs);
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		
+		return json;
+	}
+    
+	public String getComment(int dishId) {
+		String json = null;
+		final String query = "SELECT ID,COMMENT,COMMENTDATE FROM COMMENTDISH WHERE COMMENTDISH.DISH=?";
+
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, dishId);
+			
+			rs = ps.executeQuery();
+
+			json = toJSON(rs);
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return json;
+	}
+	
+	public String getComment(int dishId, String username) {
+		String json = null;
+		final String query = "SELECT ID,COMMENT,COMMENTDATE FROM COMMENTDISH WHERE COMMENTDISH.DISH=? AND COMMENTDISH.USER=?";
+
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, dishId);
+			ps.setString(2, username);
+			
+			rs = ps.executeQuery();
+
+			json = toJSON(rs);
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return json;
+	}
+	
+	public String getCommentNotUser(int dishId, String username) {
+		String json = null;
+		final String query = "SELECT ID,COMMENT,COMMENTDATE FROM COMMENTDISH WHERE COMMENTDISH.DISH=? AND COMMENTDISH.USER!=?";
+
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, dishId);
+			ps.setString(2, username);
+			
+			rs = ps.executeQuery();
+
+			json = toJSON(rs);
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return json;
+	}
+	
+	public String getDishesId() {
+		String json = null;
+		final String query = "SELECT ID FROM DISH";
+
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+
+			json = toJSON(rs);
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return json;
+	}
+	
     protected Map<String, Object> getEntityFromResultSet(final ResultSet resultSet) throws SQLException
     {
         final ResultSetMetaData metaData = resultSet.getMetaData();
@@ -163,22 +307,18 @@ public class JsonDBManager extends AbstractDBManager
 		return false;
 	}
     
-    
-    public String addComment(int dishId, String username, String comment) {
-		String json = null;
-		String procedure = "{call insertComment(?,?,?)}";
+    public boolean modifyComment(int commentID, String comment)
+	{
+		String procedure = "{call modifyComment(?,?)}";
 		CallableStatement callableStatement = null;
 		final Connection connection = createConnection();
 		try
 		{
 			callableStatement = connection.prepareCall(procedure);
-			callableStatement.setInt(1, dishId);
-			callableStatement.setString(2, username);
-			callableStatement.setString(3, comment);
-			callableStatement.execute();
-			ResultSet resultSet = callableStatement.getResultSet();
-			json = toJSON(resultSet);
-
+			callableStatement.setInt(1, commentID);
+			callableStatement.setString(2, comment);
+			callableStatement.executeUpdate();
+			return true;
 		} catch (final SQLException e)
 		{
 			e.printStackTrace();
@@ -187,13 +327,64 @@ public class JsonDBManager extends AbstractDBManager
 			closeStatement(callableStatement);
 			closeConnection(connection);
 		}
-		return (json == null) ? "" : json;
+		return false;
 	}
+    
+    
+    
+    public boolean deleteComment(int commentID)
+   	{
+   		String procedure = "{call deleteComment(?)}";
+   		CallableStatement callableStatement = null;
+   		final Connection connection = createConnection();
+   		try
+   		{
+   			callableStatement = connection.prepareCall(procedure);
+   			callableStatement.setInt(1, commentID);
+   			callableStatement.executeUpdate();
+   			return true;
+   		} catch (final SQLException e)
+   		{
+   			e.printStackTrace();
+   		} finally
+   		{
+   			closeStatement(callableStatement);
+   			closeConnection(connection);
+   		}
+   		return false;
+   	}
+    
+    public boolean addComment(int dishId, String username, String comment, String date) {
+		String procedure = "{call insertComment(?,?,?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setInt(1, dishId);
+			callableStatement.setString(2, username);
+			callableStatement.setString(3, comment);
+			callableStatement.setString(4, date);
+			callableStatement.execute();
+//			ResultSet resultSet = callableStatement.getResultSet();
+//			json = toJSON(resultSet);
+			return true;
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeStatement(callableStatement);
+			closeConnection(connection);
+		}
+//		System.out.println("YOOOOO "+json);
+		return false;
+	}
+
     
 
     protected String toJSON(final ResultSet resultSet)
 	{
-
 		try
 		{
 			final StringWriter stringWriter = new StringWriter();
@@ -260,7 +451,6 @@ public class JsonDBManager extends AbstractDBManager
 
 		} catch (IOException | SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

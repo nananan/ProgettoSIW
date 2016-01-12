@@ -57,11 +57,154 @@ $('#panelForMenu').append('<fieldset class="rating" style="left:'+(posLeft)+'%">
 //	            	$(document.getElementById(contImage).getAttribute("id")).click(setBorderSelect(posLeft));
 	
 		
-
-		
-
+*****************************************
 
 
 
+/* .rating {
+    position: absolute;
+    top: 90%;
+}
+
+:not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: "\2605 ";
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+
+ */
+
+
+
+******************************************************************
+
+//	if (user != null) {
+//		$.ajax({
+//			method : "POST",
+//			url : 'GetMenuDaily',
+//			dataType: 'json',
+//			success : function(data) {
+//				var responseJson = eval(data);
+//				if(responseJson != null) {
+//		            $.each(responseJson, function(key,value) {
+//		            	var id = eval(value.id);
+//		            	arrayDishId.push(id);
+//		            });
+//				}
+//			}
+//		}).done(function() {
+//		
+//			for (i = 0; i < arrayDishId.length; i++) {
+//				$.ajax({
+//					method : "POST",
+//					url : 'getRating',
+//					data : {
+//						'dishId' : arrayDishId[i],
+//						'username' : user["username"]
+//					},
+//					success : function(data) {
+//						var resp = eval(data);
+//						arrayRating.splice(i,1,resp[0]["points"]);
+//						console.log(resp[0]);
+//					}
+//				});
+//			}
+//		}).done(function(){
+//		
+//			$('body').append('<p id="point">POINT:'+point+'</p>');
+//			
+//			$.ajax({
+//				method : "POST",
+//				url : 'GetMenuDaily',
+//				dataType: 'json',
+//				success : function(data) {
+//					var responseJson = eval(data);
+//					if(responseJson != null) {
+//			            $.each(responseJson, function(key,value) {
+//			            	var category = eval(value.category);
+//			            	if (category == "1")
+//		            			$('#quad').append('<div><p id="categoryDish" style="left:'+(posLeft+10)+'%">Primo</p> </div>');
+//			            	else if (category == "2")
+//			            		$('#quad').append('<div><p id="categoryDish" style="left:'+(posLeft+10)+'%">Secondo</p> </div>');
+//			            	else if (category == "3")
+//			            		$('#quad').append('<div><p id="categoryDish" style="left:'+(posLeft+10)+'%">Contorno</p> </div>');
+//			            	
+//			            	$('#quad').append('<div><p id="nameDish" style="left:'+(posLeft+5)+'%">' + value.name + '</p> </div>');
+//			            	$('#quad').append('<div><a id="dish""><img style="left:'+posLeft+'%" onclick="setBorderSelect('+posLeft+","+contImage+","+category+')" src="' + value.image_url + '"/></a> </div>');
+//
+//			            	bool[contImage] = false;
+//			            	arrayComment.splice(contImage,1,"");
+//		
+//			            	$('#quad').append('<div><textarea id="'+(contImage)+'" class="inputCommento" type="text" name="commento" style="left:'+(posLeft+1)+'%" ></textarea></div>')
+//			            	
+//			            	$.ajax({
+//				          		  url: "library.html"
+//				          		}).done(function(data){
+//				          			$('#quad').append(data);
+//			          		});
+//			            	
+//			            	if (arrayRating[contImage] == null)
+//			            		arrayRating.splice(contImage,1,0);
+//			            	
+//			            	$('#quad').append(
+//			        			'<div id="rating'+contImage+'"><div id=container style="position:absolute; top:85%; left:'+(posLeft+2)+'%; "><input id="valueRating'+contImage+'" class="rating" value="'+arrayRating[contImage]+'" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"></div></div>');
+//			            	
+//			            	posLeft += 30;
+//			            	contImage++;
+//		                });
+//		            }
+//				}
+//			});
+//		});
+//	}
+//	else
+//		alert("Esegui il login per scegliere il menù");
 
  

@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import project.JsonDBManager;
 
-@WebServlet("/BestDish")
-public class BestDish extends HttpServlet {
-
+@WebServlet("/getCommentUser")
+public class getCommentUser extends HttpServlet {
+	
 	private static final long serialVersionUID = 100000L;
 
 	@Override
@@ -24,11 +24,11 @@ public class BestDish extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		String category = request.getParameter("category");
+		int dishId = Integer.parseInt(request.getParameter("dishId"));
+		String username = request.getParameter("username");
 		
-		String bestDish = JsonDBManager.getInstance().bestDish(category);
+		String comment = JsonDBManager.getInstance().getComment(dishId,username);
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(bestDish);
+		response.getWriter().write(comment);
 	}
 }
-

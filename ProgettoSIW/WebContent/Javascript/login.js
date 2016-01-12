@@ -3,9 +3,10 @@ var socialUser = false;
 function insertPaneLogin() {
 	
 	$.ajax({
-		  url: "login.html"
-		}).done(function(data){
-		$('body').append(data);
+	  url: "login.html",
+	  success: function(data) {
+		  $('body').append(data)
+	  }
 	});
 }
 
