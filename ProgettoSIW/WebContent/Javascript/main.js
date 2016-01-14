@@ -1,6 +1,6 @@
 
 $.ajax({
-	  url: "index.html"
+	  url: "JSP/index.jsp"
 	}).done(function(data){
 	$('body').append(data);
 	var json = eval("("+localStorage["user"]+")");

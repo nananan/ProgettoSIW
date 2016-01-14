@@ -1,4 +1,4 @@
- <%@page import="project.*, java.text.*,java.util.*,project.beans.*,com.fasterxml.jackson.databind.*"%>
+ <%@page import="org.json.JSONArray,org.json.JSONException,org.json.JSONObject,project.*, java.text.*,java.util.*,project.beans.*,com.fasterxml.jackson.databind.*"%>
  
 <link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -6,11 +6,11 @@
 <link rel="stylesheet" type="text/css" href="css/mensaCR.css">
 <script src="Javascript/star-rating.js" type="text/javascript"></script>
  
-<!-- User user = (User) session.getAttribute("user"); -->
-
 <% 
+User user = (User) session.getAttribute("user");
 
 ArrayList<String> dishId = new ArrayList<String>();
+ArrayList<Boolean> isSelected = new ArrayList<Boolean>();
 
 String dishesId = JsonDBManager.getInstance().getDishesId();
 JsonNode arrDishId = new ObjectMapper().readTree(dishesId);
@@ -37,7 +37,15 @@ if (arrDishId.isArray()) {
 	{
 		for (final JsonNode objNode : arrNode)
 		{ 
+			String pointRating = JsonDBManager.getInstance().getRating(Integer.parseInt(objNode.get("id").asText()), user.getUsername());
+			JsonNode arrNodeRating = new ObjectMapper().readTree(pointRating);
+			if (arrNodeRating.isArray())
+			{
+				for (final JsonNode objNodeRating : arrNodeRating)
+				{ 
+				
 			if (objNode.get("category").asText().equals("1")) {
+				
 %>
 			<div id="dishPrimo">
 				<div>
@@ -56,14 +64,14 @@ if (arrDishId.isArray()) {
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopPrimo+60%>%; left:<%=posPrimo+1%>%" ></textarea>
            		</div>
 				
-				<script>
+				<!-- <script>
 					checkDishSelected();
-				</script>
-				<%-- <div id="rating<%=contImage%>">
+				</script> -->
+				<div id="rating<%=contImage%>">
 		  			<div id=container style="position:absolute; top:<%=posTopPrimo+85%>%; left:<%=posPrimo%>%">
-		  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>
-				</div> --%>
+				</div>
 			</div>
 <%			
 				countPrimo++;
@@ -90,11 +98,11 @@ if (arrDishId.isArray()) {
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopSecondo+60%>%; left:<%=posSecondo+1%>%" ></textarea>
            		</div>
 				
-				<%-- <div id="rating<%=contImage%>">
+				<div id="rating<%=contImage%>">
 		  			<div id=container style="position:absolute; top:<%=posTopSecondo+85%>%; left:<%=posSecondo%>%">
-		  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>
-				</div> --%>
+				</div>
 			</div>
 <%
 				countSecondo++;
@@ -120,17 +128,67 @@ if (arrDishId.isArray()) {
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopContorno+60%>%; left:<%=posContorno+1%>%" ></textarea>
            		</div>
 				
-				<%-- <div id="rating<%=contImage%>">
+				<div id="rating<%=contImage%>">
 		  			<div id=container style="position:absolute; top:<%=posTopContorno+85%>%;  left:<%=posContorno%>%">
-		  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>	
-				</div> --%>
+				</div>
 			</div>
-<%
-				countContorno++;
-				posTopContorno += 100;
+<%				
+						countContorno++;
+						posTopContorno += 100;
+					}
+				}
 			}
 			contImage++;
 		}
 	}
 %>
+
+
+<!-- <script>
+function setBorderSelect(posTop,pos,cont,category) {
+	if (bool[cont] == null)
+		bool[cont] = false;
+	if (bool[cont] == false) {
+		if ((point +1 <= 5 && (category=="1" || category=="3")) || (point + 2 <= 5 && category=="2")) {
+			$('#quad').append('<div id="dishBorder"><a id="dishBorder'+cont+'"><img style="top:'+posTop+'%; left:'+pos+'%;" onclick="setBorderSelect('+posTop+","+pos+","+cont+","+category+')" /></a></div>');
+			bool[cont] = true;
+			if (category == "1" || category == "3")
+				point += 1;
+			else if (category == "2")
+				point += 2;
+			
+			if (posTopSelected[cont] == null)
+				posTopSelected[cont] = posTop;
+			else
+				posTopSelected.splice(cont,1,posTop);
+			if (posLeftSelected[cont] == null)
+				posLeftSelected[cont] = pos;
+			else
+				posLeftSelected.splice(cont,1,pos);
+
+			arrayCategory[cont] = category;
+			arrayCont.push(cont);
+		}
+		else
+			alert("Hai superato i punti.");
+	}
+	else {
+		$("#dishBorder"+cont).remove();
+		bool[cont] = false;
+		if (category == "1" || category == "3")
+			point -= 1;
+		else if (category == "2")
+			point -= 2;
+		
+	}
+	if (point <= 5) {
+		$('#point').remove();
+		$('body').append('<p id="point">POINT:'+point+'</p>');
+		
+	} else {
+		alert("Hai superato i punti.");
+	}
+}
+</script> -->

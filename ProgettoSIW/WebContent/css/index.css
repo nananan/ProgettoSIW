@@ -109,7 +109,7 @@ html, body { /* se non metto html non funziona height*/
 
 ul#menu {
 	position:absolute;
-	left: 33%;
+	left: 45%;
 	top: 3%;
     font-family: Verdana, sans-serif;
     font-size: 11px;
@@ -148,7 +148,7 @@ ul#menu li.active, ul#menu li:hover {
 }
 
 
-p#nameMense{
+#nameMense p{
 	color: #fff;
 	position:absolute;
 	left: 40%;
@@ -167,9 +167,9 @@ p#nameMense{
 
 
 
-#nameUser {
+#nameUser p{
 	position: absolute;
-	top: 1%;
+	top: 3%;
 	right: 7%;
 	
     width: 150px;
@@ -186,5 +186,6 @@ p#nameMense{
     
     font-family:Liberation Serif Bold Italic;
     font-size: 15px;
+    cursor: pointer;
 }
 

@@ -5,8 +5,9 @@ function insertPaneLogin() {
 	$.ajax({
 	  url: "login.html",
 	  success: function(data) {
-		  $('body').append(data)
 	  }
+	}).done(function(data){
+		$('body').append(data)
 	});
 }
 
@@ -42,6 +43,7 @@ function executeLogin() {
 			localStorage["user"] = data;
 			var jsonResp = eval("("+data+")");
 			if (jsonResp["user"] != "null") {
+				console.log("AAAAAAAAAH LOOOOOOOOOOOOGIN");
 				deleteLoginAndInsertNameUser(jsonResp["username"]);
 			}
 			else {
@@ -59,8 +61,27 @@ function deleteLoginAndInsertNameUser(username) {
 	$('#paneLogin').remove();
 	$('#paneBottomLogin').remove();
 	$('#menu li').eq(3).remove();
-	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
-	$('body').append('<div id="nameUser"><p>'+username+'</p></div>');
+	
+//	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
+	$('body').append('<div id="nameUser"><p onclick="insertProfile()">'+username+'</p></div>');
+}
+
+isInsertProfile = false;
+function insertProfile() {
+	if (!isInsertProfile) {
+		$.ajax({
+			  url: "JSP/profile.jsp",
+			  success: function(data) {
+				  $('body').append(data);
+				  isInsertProfile = true;
+			  }
+		});
+	}
+	else {
+		$('#pane').remove();
+		$('.arrow-top').remove();
+		isInsertProfile = false;
+	}
 }
 
 function userNotPresent() {
@@ -75,7 +96,9 @@ function ok() {
 function executeLogOut() {
 	$('#menu li').eq(3).remove();
 	$('ul#menu').last().append('<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>');
-	$('#nameUser').remove();
+	$('#nameUser p').remove();
+	$('#pane').remove();
+	$('.arrow-top').remove();
 	
 	if (socialUser)
 		Logout();

@@ -24,11 +24,13 @@ public class getRating extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int dishId = Integer.parseInt(request.getParameter("dishId"));
-		String username = request.getParameter("username");
-		
-		String point = JsonDBManager.getInstance().getRating(dishId, username);
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(point);
+		if (request.getParameter("dishId") != null) {
+			int dishId = Integer.parseInt(request.getParameter("dishId"));
+			String username = request.getParameter("username");
+			
+			String point = JsonDBManager.getInstance().getRating(dishId, username);
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(point);
+		}
 	}
 }

@@ -7,8 +7,12 @@ html, body {
 	background-color: #6E1414;
 }
 
+* {
+	box-sizing: content-box !important;
+}
+
 #slideshow { 
-    position: relative; 
+    position: absolute; 
     top: 15%;
     left: 17%;
     width: 900px; 
@@ -109,7 +113,7 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 	right: 3%;
 }
 
-#dish img{
+#dish img {
 	position: absolute;
 	top: 15%;
 
@@ -191,8 +195,8 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
     list-style: none;
 }
 
-p {
-	/* position: absolute;
+/* p {
+	position: absolute;
 	top: 0%;
 	right: 7%;
 	
@@ -204,18 +208,31 @@ p {
     font-weight: bold;
     line-height: 30px;
     text-decoration: none;
-    text-align: center; */
+    text-align: center;
     
-    margin: 0px 0px 0px;
-	
-}
+	margin: 0px 0px 0px;
+} */
 
 
-#nameUser {
+/* #nameUser p {
 	position: absolute;
-	top: 3%;
+	top: 6%;
 	right: 7%;
 	
-	font-family:Liberation Serif Bold Italic;
-    font-size: 15px;
-}
+    width: 150px;
+    height: 30px;
+	
+	color: #fff;
+    display: block;
+    font-weight: bold;
+    line-height: 30px;
+    text-decoration: none;
+    text-align: center;
+    
+    margin: 0px 0px 0px;
+    
+    font-family:Liberation Serif Bold Italic;
+    font-size: 10px;
+    
+    background-color: #b96b6b;
+} */

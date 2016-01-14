@@ -29,7 +29,7 @@ public class addRating extends HttpServlet {
 			String username = request.getParameter("username");
 			float rating = Float.parseFloat(request.getParameter("rating"));
 			
-			JsonDBManager.getInstance().addRating(dishId, username, rating);
+			boolean c = JsonDBManager.getInstance().addRating(dishId, username, rating);
 		}
 	}
 }

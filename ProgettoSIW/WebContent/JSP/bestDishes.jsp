@@ -85,7 +85,6 @@
   			<div id=container style="position:absolute; top:85%; left:65%; ">
   				<input class="rating" value="<%=arrNodeThirt.get(0).get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa" disabled>
 			</div>
-		
 
 <%			
 	}

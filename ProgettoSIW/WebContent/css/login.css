@@ -230,7 +230,7 @@ div.hr:before {
 
 .facebook {
 	background-image: url("../images/login/facebook.png");
-	background-size: 80% 80%;
+	background-size: 70% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -248,7 +248,7 @@ div.hr:before {
 
 .facebook:hover {
 	background-image: url("../images/login/facebook-white.png");
-	background-size: 80% 80%;
+	background-size: 70% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -262,7 +262,7 @@ div.hr:before {
 
 .twitter {
 	background-image: url("../images/login/twitter.png");
-	background-size: 80% 80%;
+	background-size: 70% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -280,7 +280,7 @@ div.hr:before {
 
 .twitter:hover {
 	background-image: url("../images/login/twitter-white.png");
-	background-size: 80% 80%;
+	background-size: 70% 80%;
 	background-repeat: no-repeat;
 	background-position: center;
 	
@@ -302,7 +302,10 @@ div.hr:before {
 	height: 15%;
 	
 	background-image: url("../images/login/googleplus.png");
-	background-size: 100% 100%;
+	background-size: 70% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+	
 	-webkit-border-radius: 50%;
   	-moz-border-radius: 50%;
     border-radius: 50%;
@@ -311,7 +314,10 @@ div.hr:before {
 
 .googleplus:hover {
 	background-image: url("../images/login/googleplus-white.png");
-	background-size: 100% 100%;
+	background-size: 70% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+	
 	text-shadow: 0 1px darken(#dd4b39, 20%);
     background-color: #dd4b39;
 /*     border:2px solid #c22a18;

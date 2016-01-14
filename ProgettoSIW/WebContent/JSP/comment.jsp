@@ -8,9 +8,4 @@
 <div id="theme"></div>
 <div id="panelForComment">
 	<div class="closeButton"><img onclick="deletePanelComment()" src="images/closeButton.png"></div>
-
-<!-- <script type="text/javascript">
-	console.log(window.getSelection());
-</script> -->
-
 </div>

@@ -33,61 +33,72 @@
 	background-color: #862e2e;
 	opacity: 0.9;
 	overflow: auto;
+	
+	padding: 20px 0px 30px !important;
 }
 
 #panelForComment img {
 	width: 100%;
 	height: 10%;
 	
-	position:absolute;
-	bottom: 120%;
+	position: absolute;
+	bottom: 125%;
 	
 }
 
-#numberComment {
+.panelComment {
+	position: relative;
+	padding: 5px 5px 5px !important;
+
+	overflow: auto;
+}
+
+#numberComment p {
 	color: #000;
-	position:absolute;
-	left: 5%;
+	position: relative;
+	/* left: 5%; */
     font-family:Liberation Serif Bold Italic;
     font-size: 15px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    margin: 10px 40px 0px!important;
+/* 
+   padding: 0;
+    list-style: none; */
+    
 }
+
 
 #commentDish {
 	color: #000;
-	position:absolute;
+	position: relative;
 	left: 5%;
     border: 2px solid #cccccc;
     border-radius: 10px;
 	padding: 5px;
 	font-family: Tahoma, sans-serif;
     font-size: 20px;
-    margin: 0;
-    list-style: none;
+    margin: 0px 0px 5px!important;
     
     background-color: #862e2e;
     
     width: 90%;
-    height: 18%;
+    /* height: 18%; */
     overflow: auto;
     
     word-wrap:break-word;
 }
 
-#deleteComment {
-	position: absolute;
+/* #deleteComment {
+	position: relative;
 	background-color: #bfbfbf;
     
     width: 100%;
     height: 33%;
     
     opacity: 0.6;
-}
+} */
 
-#modifyButton, #okButton {
-	position: absolute;
+.modifyButton, .okButton {
+	position: relative;
 	left: 5%;
 	
 	padding: 5px 20px 5px !important;
@@ -104,42 +115,44 @@
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	
+	float: left;
 }
 
-#deleteButton {
-	position: absolute;
-	left: 18%;
+.deleteButton {
+	position: relative;
+	left: 6%;
 	
 	padding: 5px 20px 5px !important;
 	font-size: 15px !important;
-	background-color: #FF0000;
+	background-color: #ff0000;
 	font-weight: bold;
-	text-shadow: 1px 1px #FF0000;
+	text-shadow: 1px 1px #ff0000;
 	color: #ffffff;
 	border-radius: 100px;
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
-	border: 1px solid #FF0000;
+	border: 1px solid #ff0000;
 	cursor: pointer;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
-#annullaButton {
-	position: absolute;
-	left: 18%;
+.annullaButton {
+	position: relative;
+	left: 6%;
 	
 	padding: 5px 20px 5px !important;
 	font-size: 15px !important;
-	background-color: #FF0000;
+	background-color: #ff0000;
 	font-weight: bold;
-	text-shadow: 1px 1px #FF0000;
+	text-shadow: 1px 1px #ff0000;
 	color: #ffffff;
 	border-radius: 100px;
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
-	border: 1px solid #FF0000;
+	border: 1px solid #ff0000;
 	cursor: pointer;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;

@@ -44,6 +44,7 @@ public class InsertComment extends HttpServlet {
 					df.setLenient (false);
 					Date d = df.parse (data);
 					String id = JsonDBManager.getInstance().getIdComment(dishId, username, comment, dateFormat.format(d));
+
 					response.setCharacterEncoding("UTF-8");
 					response.getWriter().write(id);
 				} catch (ParseException e) {

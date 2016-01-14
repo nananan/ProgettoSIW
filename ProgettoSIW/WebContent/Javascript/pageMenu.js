@@ -38,7 +38,7 @@ function deletePanelChooseMenu() {
 					},
 					success : function(data) {
 						
-					},
+					}
 				});
 			}
 		}
@@ -46,30 +46,29 @@ function deletePanelChooseMenu() {
 	for (i = 0; i < contImage; i++) 
 		arrayRating.splice(i,1,$("#valueRating"+i).val());
 	
-	if (checkIfThereIsARating(contImage)) {
+//	if (checkIfThereIsARating(contImage)) {
 		for (i = 0; i < arrayRating.length; i++) {
-			if (arrayRating[i] != 0) {
+//			if (arrayRating[i] != 0) {
 				$.ajax({
 					method : "POST",
 					url : 'addRating',
 					data : {
 						'dishId' : arrayDishId[i],
 						'username' : user["username"],
-						'rating' : arrayRating[i]
+						'rating' : $("#valueRating"+i).val()
 					},
 					success : function(data) {
-						
-					},
+					}
 				});
-			}
+//			}
 		}
-	}
+//	}
 	
-	for (i = 0; i < contImage; i++) 
-	{
-		$("#"+i).remove();
-		$("#rating"+i).remove();
-	}
+//	for (i = 0; i < contImage; i++) 
+//	{
+//		$("#"+i).remove();
+//		$("#rating"+i).remove();
+//	}
 	
 	$('#dishPrimo').remove();
 	$('#dishSecondo').remove();
@@ -89,6 +88,8 @@ function showDailyMenu() {
 		  url: "JSP/dailyMenu.jsp"
 		}).done(function(data){
 		$('#quadMenu').append(data);
+		$('#pane').remove();
+		$('.arrow-top').remove();
 	})
 }
 
@@ -98,11 +99,11 @@ function showChoiseMenu() {
 
 	var user = eval("("+localStorage["user"]+")");
 	if(user != null) {
-		var posTop = 85;
-		var countPrimo = 0;
-		var countSecondo = 0;
-		var countContorno = 0;
-		var count = 0;
+//		var posTop = 85;
+//		var countPrimo = 0;
+//		var countSecondo = 0;
+//		var countContorno = 0;
+//		var count = 0;
 		
 		$.ajax({
 			method : "POST",
@@ -140,53 +141,9 @@ function showChoiseMenu() {
 				  url: "JSP/chooseMenu.jsp"
 				}).done(function(data){
 				$('#quad').append(data);
+				$('#pane').remove();
+				$('.arrow-top').remove();
 			})
-				
-		}).done(function(){
-		
-			$.ajax({
-				url: "library.html"
-			}).done(function(data){
-				$('#quad').append(data);
-				for (i=0; i<contImage; i++) {
-			      	if (arrayRating[i] == null)
-			      		arrayRating.splice(i,1,0);
-
-			      	if (i % 3 == 1) {
-				      	$('#quad').append(
-				      			'<link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">'+
-				      			'<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">'+
-				      			'<link rel="stylesheet" href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>'+
-				      			'<link rel="stylesheet" type="text/css" href="css/mensaCR.css">'+
-				      			'<script src="Javascript/star-rating.js" type="text/javascript"></script>'+
-				  			'<div id="rating'+i+'"><div id=container style="position:absolute; top:'+posTop+'%; left:5%; "><input id="valueRating'+i+'" class="rating" value="'+arrayRating[i]+'" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"></div></div>');
-				      	count++;
-			      	}
-			      	if (i % 3 == 2) {
-				      	$('#quad').append(
-				      			'<link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">'+
-				      			'<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">'+
-				      			'<link rel="stylesheet" href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>'+
-				      			'<link rel="stylesheet" type="text/css" href="css/mensaCR.css">'+
-				      			'<script src="Javascript/star-rating.js" type="text/javascript"></script>'+
-				  			'<div id="rating'+i+'"><div id=container style="position:absolute; top:'+posTop+'%; left:35%; "><input id="valueRating'+i+'" class="rating" value="'+arrayRating[i]+'" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"></div></div>');
-				      	count++;
-			      	}
-			      	if (i % 3 == 0) {
-				      	$('#quad').append(
-				      			'<link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">'+
-				      			'<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">'+
-				      			'<link rel="stylesheet" href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>'+
-				      			'<link rel="stylesheet" type="text/css" href="css/mensaCR.css">'+
-				      			'<script src="Javascript/star-rating.js" type="text/javascript"></script>'+
-				  			'<div id="rating'+i+'"><div id=container style="position:absolute; top:'+posTop+'%; left:65%; "><input id="valueRating'+i+'" class="rating" value="'+arrayRating[i]+'" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"></div></div>');
-				      	count++;
-			      	}
-			      	
-			      	if (count % 3 == 0) 
-			      		posTop += 100;
-				}
-			});
 		});
 		$('body').append('<p id="point">POINT:'+point+'</p>');
 	}
@@ -201,18 +158,21 @@ function showBestDishes(){
 		  url: "JSP/bestDishes.jsp"
 		}).done(function(data){
 		$('#quadBestDish').append(data);
+		$('#pane').remove();
+		$('.arrow-top').remove();
 	});	
 }
 
-function checkDishSelected() {
-	for (i=0; i<arrayCont.length; i++) {
-		$('#quad').append('<div id="dishBorder"><a id="dishBorder'+arrayCont[i]+
-				'"><img style="top:'+posTopSelected[arrayCont[i]]+'%; left:'+posLeftSelected[arrayCont[i]]+
-				'%;" onclick="setBorderSelect('+posTopSelected[arrayCont[i]]+","+posLeftSelected[arrayCont[i]]+","+arrayCont[i]+","+arrayCategory[arrayCont[i]]+')" /></a></div>');
-		bool[arrayCont[i]] = true;
-		
-	}
-}
+//function checkDishSelected() {
+//	for (i=0; i<arrayCont.length; i++) {
+//		$('#quad').append('<div id="dishBorder"><a id="dishBorder'+arrayCont[i]+
+//				'"><img style="top:'+posTopSelected[arrayCont[i]]+'%; left:'+posLeftSelected[arrayCont[i]]+
+//				'%;" onclick="setBorderSelect('+posTopSelected[arrayCont[i]]+","+posLeftSelected[arrayCont[i]]+","+arrayCont[i]+","+arrayCategory[arrayCont[i]]+')" /></a></div>');
+//		
+//		bool[arrayCont[i]] = true;
+//		console.log("OOOOH "+arrayCont[i]+"    "+i);
+//	}
+//}
 
 function setBorderSelect(posTop,pos,cont,category) {
 	if (bool[cont] == null)
@@ -293,7 +253,6 @@ function showComment(dishId) {
 
 	var user = eval("("+localStorage["user"]+")");
 	
-	
 	$.ajax({
 		  url: "JSP/comment.jsp"
 		}).done(function(data){
@@ -313,21 +272,22 @@ function showComment(dishId) {
 					var responseJson = eval(data);
 					if(responseJson != null) {
 			            $.each(responseJson, function(key,value) {
-			            	console.log(value);
-			            	$('#panelForComment').append('<p id="numberComment" style="top:'+position+'%">'+value.commentdate+'</p>');
-			            	$('#panelForComment').append('<div id="comment'+cont+'"><p id="commentDish" class="commentDish'+cont+'" style="top:'+(position+5)+'%">'+value.comment+'</p></div>');
+			            	$('#panelForComment').append('<div id="panelComment'+cont+'" class="panelComment" ><div>');
+			            	
+			            	$('#panelComment'+cont).append('<div id="numberComment"><p id="numberComment'+cont+'">'+value.commentdate+'</p></div>');
+			            	$('#panelComment'+cont).append('<div id="comment'+cont+'"><p id="commentDish" class="commentDish'+cont+'">'+value.comment+'</p></div>');
 			            	
 			            	commentArray[cont] = value.comment;
 			            	commentId[cont] = value.id;
 			            	dateArray[cont] = value.commentdate;
 			            	
-			            	$('#panelForComment').append('<button id="modifyButton" onclick="modifyComment('+cont+","+(position+5)+');"'+
-			            			'type="button" style="top:'+(position+24)+'%">Modifica</button>');
-			            	$('#panelForComment').append('<button id="deleteButton" onclick="deleteComment('+cont+","+(position+5)+","+dishId+');"'+
-			            			'type="button" style="top:'+(position+24)+'%">Cancella</button>');
+			            	$('#panelComment'+cont).append('<button class="modifyButton" id="modifyButton'+cont+'" onclick="modifyComment('+cont+","+dishId+');"'+
+			            			'type="button">Modifica</button>');
+			            	$('#panelComment'+cont).append('<button class="deleteButton" id="deleteButton'+cont+'" onclick="deleteComment('+cont+","+dishId+');"'+
+			            			'type="button">Cancella</button>');
 			            	
-			            	position += 35;
 			            	cont++;
+			            	thereIsComment = true;
 			            });
 					}
 				}
@@ -335,15 +295,10 @@ function showComment(dishId) {
 		}
 		else
 			checkComment(dishId);
-		
-		if (!thereIsComment)
-			$('#panelForComment').append('<p id="numberComment" style="top:10%">Non sono presenti ancora commenti per quetso piatto.</p>');
 	});
-	
 }
 
 function checkComment(dishId) {
-	console.log(position);
 	$.ajax({
 		method : "POST",
 		url : 'getComment',
@@ -355,10 +310,10 @@ function checkComment(dishId) {
 			var responseJson = eval(data);
 			if(responseJson != null) {
 	            $.each(responseJson, function(key,value) {
-	            	$('#panelForComment').append('<p id="numberComment" style="top:'+position+'%">'+value.commentdate+'</p>');
-	            	$('#panelForComment').append('<div><p id="commentDish" style="top:'+(position+5)+'%">'+value.comment+'</p></div>');
+	            	$('#panelForComment').append('<div id="panelComment" class="panelComment" ><div>');
 	            	
-	            	position += 25;
+	            	$('#panelComment').append('<div id="numberComment"><p>'+value.commentdate+'</p></div>');
+	            	$('#panelComment').append('<div><p id="commentDish">'+value.comment+'</p></div>');
 	            	thereIsComment = true;
 	            });
 			}
@@ -380,10 +335,10 @@ function checkCommentNotUser(dishId) {
 			var responseJson = eval(data);
 			if(responseJson != null) {
 	            $.each(responseJson, function(key,value) {
-	            	$('#panelForComment').append('<p id="numberComment" style="top:'+position+'%">'+value.commentdate+'</p>');
-	            	$('#panelForComment').append('<div><p id="commentDish" style="top:'+(position+5)+'%">'+value.comment+'</p></div>');
+	            	$('#panelForComment').append('<div id="panelComment" class="panelComment" ><div>');
 	            	
-	            	position += 25;
+	            	$('#panelComment').append('<div id="numberComment"><p>'+value.commentdate+'</p></div>');
+	            	$('#panelComment').append('<div><p id="commentDish">'+value.comment+'</p></div>');
 	            	thereIsComment = true;
 	            });
 			}
@@ -391,15 +346,19 @@ function checkCommentNotUser(dishId) {
 	});
 }
 
-function modifyComment(cont,position) {
+function modifyComment(cont,dishId) {
 	$('#comment'+cont).remove();
-	$('#panelForComment').append('<div id="comment'+cont+'"><textarea id="commentDish" class="commentDish'+cont+'" style="top:'+position+'%">'+commentArray[cont]+'</textarea></div>');
+	$('#panelComment'+cont).append('<div id="comment'+cont+'"><textarea id="commentDish" class="commentDish'+cont+'">'
+			+commentArray[cont]+'</textarea></div>');
 	
-	$('#modifyButton').remove();
-	$('#panelForComment').append('<button id="okButton" onclick="okComment('+cont+","+position+');" type="button" style="top:'+(position+19)+'%">Ok</button>');
+	$('#modifyButton'+cont).remove();
+	$('#deleteButton'+cont).remove();
+	$('#panelComment'+cont).append('<button class="okButton" id="okButton'+cont+'" onclick="okComment('+cont+","+dishId+');"'+
+		'type="button">Salva</button>');
 }
 
-function okComment(cont,position) {
+
+function okComment(cont,dishId) {
 	if ($('.commentDish'+cont).val() != "") {
 		$.ajax({
 			method : "POST",
@@ -410,22 +369,24 @@ function okComment(cont,position) {
 			},
 			success : function(data) {
 				commentArray[cont] = $('.commentDish'+cont).val();
-				insertPanelCommentModified(cont, position);
+				insertPanelCommentModified(cont,dishId);
 			}
 		});
 	}
 	else 
-		insertPanelCommentModified(cont, position);
+		insertPanelCommentModified(cont,dishId);
 }
 
-function insertPanelCommentModified(cont, position) {
+function insertPanelCommentModified(cont,dishId) {
 	$('#comment'+cont).remove();
-	$('#okButton').remove();
-	$('#panelForComment').append('<div id="comment'+cont+'"><p id="commentDish" style="top:'+(position)+'%">'+commentArray[cont]+'</p></div>');
-	$('#panelForComment').append('<button id="modifyButton" onclick="modifyComment('+cont+","+position+');" type="button" style="top:'+(position+19)+'%">Modifica</button>');
+	$('#okButton'+cont).remove();
+	$('#panelComment'+cont).append('<div id="comment'+cont+'"><p id="commentDish" class="commentDish'+cont+'">'+commentArray[cont]+'</p></div>');
+	$('#panelComment'+cont).append('<button class="modifyButton" id="modifyButton'+cont+'" onclick="modifyComment('+cont+');" type="button">Modifica</button>');
+	$('#panelComment'+cont).append('<button class="deleteButton" id="deleteButton'+cont+'" onclick="deleteComment('+cont+","+dishId+');"'+
+		'type="button">Cancella</button>');
 }
 
-function deleteComment(cont,position,dishId) {
+function deleteComment(cont,dishId) {
 	$.ajax({
 		method : "POST",
 		url : 'deleteComment',
@@ -433,23 +394,16 @@ function deleteComment(cont,position,dishId) {
 			'commentId' : commentId[cont]
 		},
 		success : function(data) {
-			console.log("COMMENT: " +commentId[cont]);
-			$('#panelForComment').append('<div id="deleteComment" style="top:'+(position-5)+'%"</div>');
-			$('#panelForComment').append('<button id="annullaButton" onclick="annullaDeleteComment('+cont+","+(position)+","+dishId+');"'+
-        			'type="button" style="top:'+(position+19)+'%">Annulla</button>');
-			$('#deleteButton').remove();
+			$('#panelComment'+cont).empty();
+			$('#panelComment'+cont).append('<button class="annullaButton" id="annullaButton'+cont+'" onclick="annullaDeleteComment('+cont+","+dishId+');"'+
+			'type="button">Annulla</button>');
 		}
 	});
 }
 
-function annullaDeleteComment(cont,position,dishId) {
-	$('#deleteComment').remove();
-	$('#annullaButton').remove();
-	
-	$('#panelForComment').append('<button id="deleteButton" onclick="deleteComment('+cont+","+(position)+","+dishId+');"'+
-			'type="button" style="top:'+(position+19)+'%">Cancella</button>');
-	
-	
+function annullaDeleteComment(cont,dishId) {
+	$('#annullaButton'+cont).remove();
+
 	$.ajax({
 		method : "POST",
 		url : 'Comment',
@@ -462,8 +416,20 @@ function annullaDeleteComment(cont,position,dishId) {
 		success : function(data) {
 			var resp = eval(data);
 			commentId.splice(cont,1,resp[0]["id"]);
+			
+			$('#panelForComment').append('<div id="panelComment'+cont+'" class="panelComment"><div>');
+
+			$('#panelComment'+cont).append('<div id="numberComment"><p id="numberComment'+cont+'">'+dateArray[cont]+'</p></div>');
+        	$('#panelComment'+cont).append('<div id="comment'+cont+'"><p id="commentDish" class="commentDish'+cont+'">'+commentArray[cont]+'</p></div>');
+        	
+        	$('#panelComment'+cont).append('<button class="modifyButton" id="modifyButton'+cont+'" onclick="modifyComment('+cont+","+dishId+');"'+
+        			'type="button">Modifica</button>');
+        	$('#panelComment'+cont).append('<button class="deleteButton" id="deleteButton'+cont+'" onclick="deleteComment('+cont+","+dishId+');"'+
+        			'type="button">Cancella</button>');
+        	
 		}
 	});
+	
 	
 }
 
