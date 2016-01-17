@@ -132,7 +132,9 @@ function showChoiseMenu() {
 					},
 					success : function(data) {
 						var resp = eval(data);
-						arrayRating.splice(i,1,resp[0]["points"]);
+						console.log(resp[0]);
+						arrayRating[i]= resp[0]["points"];
+						console.log(arrayRating[i]);
 					}
 				});
 			}

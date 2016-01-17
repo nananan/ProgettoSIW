@@ -10,9 +10,10 @@ public class User implements Serializable {
 	protected String profileName;
 	protected String imageUrl;
 	protected String social;
+	protected String admin;
 	
 	public User(String username, String password, String email, String profileName, 
-			String imageUrl, String social)
+			String imageUrl, String social, String admin)
 	{
 		super();
 		this.username = username;
@@ -21,6 +22,7 @@ public class User implements Serializable {
 		this.profileName = profileName;
 		this.imageUrl = imageUrl;
 		this.social = social;
+		this.admin = admin;
 	}
 
 	public User()
@@ -83,10 +85,18 @@ public class User implements Serializable {
 		return social;
 	}
 	
+	public String getAdmin() {
+		return admin;
+	}
+	
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+	
 	public String toJSON()
 	{
 		return "{username:'" + username + "', password:'" + password + "', profileName:'" + profileName + "', imageUrl:'" + imageUrl
-				+ "', email:'" + email+"', social:'"+social+"'}";
+				+ "', email:'" + email+"', social:'"+social+"', admin:'"+admin+"'}";
 
 	}
 
@@ -94,8 +104,8 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [username=" + username + ", password=" + password
 				+ ", email=" + email + ", profileName=" + profileName
-				+ ", imageUrl=" + imageUrl + ", social=" + social + "]";
+				+ ", imageUrl=" + imageUrl + ", social=" + social + ", admin="
+				+ admin + "]";
 	}
 
-	
 }

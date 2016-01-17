@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import project.beans.Category;
@@ -20,6 +21,7 @@ import project.beans.User;
 public class BeanDBManager extends AbstractDBManager
 {
     private static BeanDBManager instance;
+    private final SimpleDateFormat dateSDF = new SimpleDateFormat("yyyy-MM-dd");
 
     public static BeanDBManager getInstance() {
         if (instance == null) {
@@ -64,12 +66,13 @@ public class BeanDBManager extends AbstractDBManager
 		{
 			e.printStackTrace();
 		} finally {
-//			closeResultSet(rs);
-//			closeStatement(ps);
-//			closeConnection(conn);
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
 		}
 		return toReturn;
 	}
+    
     
 
 	public boolean saveUser(final User user)
@@ -122,35 +125,88 @@ public class BeanDBManager extends AbstractDBManager
 			closeStatement(callableStatement);
 			closeConnection(connection);
         }
-	return false;
+		return false;
+    }
+    
+    public boolean setAdmin(final String username, String admin) {
+    	String query = "UPDATE USER SET ADMIN=? WHERE USERNAME=?";
+    	final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			ps = conn.prepareStatement(query);
+			ps.setString(1, admin);
+			ps.setString(2, username);
+
+			ps.executeQuery();
+			return true;
+
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return false;
+    }
+    
+    public boolean modifyUser(String username, String email, String image_url) {
+    	String procedure = "{call modifyUser(?,?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setString(1, username);
+			callableStatement.setString(2, email);
+			callableStatement.setString(3, image_url);
+			callableStatement.executeUpdate();
+			return true;
+        }
+        catch (final SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+        }
+		return false;
     }
     
     
-//    public boolean insertComment(CommentDish comment)
-//    {
-//		String procedure = "{call insertComment(?,?,?)}";
-//		CallableStatement callableStatement = null;
-//		final Connection connection = createConnection();
-//		try
-//		{
-//			callableStatement = connection.prepareCall(procedure);
-//			callableStatement.setInt(1, comment.getDishId());
-//			callableStatement.setString(2, comment.getUsername());
-//			callableStatement.setString(3, comment.getComment());
-//			callableStatement.executeUpdate();
-//			return true;
-//        }
-//        catch (final SQLException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        finally
-//        {
-//			closeStatement(callableStatement);
-//			closeConnection(connection);
-//        }
-//		return false;
-//    }
+    public boolean addDish(String name, String description, String image, String category) {
+		String procedure = "{call addDish(?,?,?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setString(1, name);
+			callableStatement.setString(2, description);
+			callableStatement.setString(3, image);
+			callableStatement.setString(4, category);
+			callableStatement.executeUpdate();
+			return true;
+        }
+        catch (final SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+        }
+		return false;
+    }
+
     
     
 //    public int countAllUser()
@@ -191,35 +247,35 @@ public class BeanDBManager extends AbstractDBManager
 //        }
 //        return res;
 //    }
-//
-//    public List<User> getAllUser()
-//    {
-//        final List<User> toRet = new ArrayList<>();
-//        final String query = "SELECT * FROM user";
-//
-//        try (Connection con = createConnection(); Statement statement = con.createStatement();)
-//        {
-//            try (ResultSet rs = statement.executeQuery(query);)
-//            {
-//                while (rs.next())
-//                {
-//                    final User u = new User();
-//                    u.setId(rs.getInt("id"));
-//                    u.setUsername(rs.getString("username"));
+
+    public ArrayList<User> getAllUser()
+    {
+        final ArrayList<User> toRet = new ArrayList<>();
+        final String query = "SELECT * FROM USER";
+
+        try (Connection con = createConnection(); Statement statement = con.createStatement();)
+        {
+            try (ResultSet rs = statement.executeQuery(query);)
+            {
+                while (rs.next())
+                {
+                    final User u = new User();
+                    u.setImageUrl(rs.getString("image_url"));
+                    u.setUsername(rs.getString("username"));
 //                    u.setPassword(rs.getString("password"));
-//                    u.setCreationDate(rs.getDate("creation_date"));
-//                    u.setScore(rs.getDouble("score"));
-//                    toRet.add(u);
-//                }
-//            }
-//        }
-//        catch (final SQLException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        return toRet;
-//    }
-//
+                    u.setEmail(rs.getString("email"));
+                    u.setAdmin(rs.getString("admin"));
+                    toRet.add(u);
+                }
+            }
+        }
+        catch (final SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+
 //    public User getUser(final int id)
 //    {
 //        final User u = new User();
@@ -406,6 +462,7 @@ public class BeanDBManager extends AbstractDBManager
 				user.setEmail(rs.getString("EMAIL"));
 				user.setProfileName(rs.getString("PROFILE_NAME"));
 				user.setImageUrl(rs.getString("IMAGE_URL"));
+				user.setAdmin(rs.getString("ADMIN"));
             }
         }
         catch (final SQLException e) {
@@ -439,6 +496,7 @@ public class BeanDBManager extends AbstractDBManager
 				user.setEmail(rs.getString("EMAIL"));
 				user.setProfileName(rs.getString("PROFILE_NAME"));
 				user.setImageUrl(rs.getString("IMAGE_URL"));
+				user.setAdmin(rs.getString("ADMIN"));
             }
         }
         catch (final SQLException e) {
@@ -471,4 +529,262 @@ public class BeanDBManager extends AbstractDBManager
 //        }
 //        return res;
 //    }
+
+	public ArrayList<Dish> getDishes() {
+		final ArrayList<Dish> toReturn = new ArrayList<>();
+		final String query = "SELECT * FROM DISH ORDER BY CATEGORY";
+
+		final Connection conn = createConnection();
+
+		Statement statement = null;
+		ResultSet rs = null;
+		try
+		{
+			statement = conn.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next())
+			{
+				final Dish dish = new Dish();
+				dish.setID(rs.getInt("ID"));
+				dish.setName(rs.getString("NAME"));
+				dish.setDescription(rs.getString("DESCRIPTION"));
+				dish.setRating(rs.getFloat("RATING"));
+				dish.setImageUrl(rs.getString("IMAGE_URL"));
+				dish.setCategory(Category.getDishCategoryByID(rs.getString("CATEGORY")));
+				toReturn.add(dish);
+			}
+		} catch (final SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(statement);
+			closeConnection(conn);
+		}
+		return toReturn;
+	}
+
+	public HashMap<Integer, String> getDishesImage() {
+		final HashMap<Integer, String> toReturn = new HashMap<Integer, String>();
+		final String query = "SELECT * FROM DISH ";
+
+		final Connection conn = createConnection();
+
+		Statement statement = null;
+		ResultSet rs = null;
+		try
+		{
+			statement = conn.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next())
+			{
+				final Dish dish = new Dish();
+				dish.setID(rs.getInt("ID"));
+				dish.setName(rs.getString("NAME"));
+				dish.setDescription(rs.getString("DESCRiPTION"));
+				dish.setRating(rs.getFloat("RATING"));
+				dish.setImageUrl(rs.getString("IMAGE_URL"));
+				dish.setCategory(Category.getDishCategoryByID(rs.getString("CATEGORY")));
+				toReturn.put(dish.getId(), dish.getImageUrl());
+			}
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(statement);
+			closeConnection(conn);
+		}
+		return toReturn;
+	}
+	
+	public void deleteDish(Integer dishId) {
+		final String query = "DELETE FROM DISH WHERE ID=?";
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, dishId);
+
+			ps.executeQuery();
+
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+	}
+	
+  public boolean modifyDish(Dish dish)
+  {
+		String procedure = "{call modifyDish(?,?,?,?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setInt(1, dish.getId());
+			callableStatement.setString(2, dish.getName());
+			callableStatement.setString(3, dish.getDescription());
+			callableStatement.setString(4, dish.getImageUrl());
+			callableStatement.setString(5, Category.getCategoryString(dish.getCategory()));
+			callableStatement.executeUpdate();
+			return true;
+      }
+      catch (final SQLException e)
+      {
+          e.printStackTrace();
+      }
+      finally
+      {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+      }
+		return false;
+  }
+
+  public void deleteCommentUser(String username) {
+		final String query = "DELETE FROM COMMENTDISH WHERE USER=?";
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+
+			ps.executeQuery();
+
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+	}
+  
+  public ArrayList<CommentDish> getComment() {
+		final ArrayList<CommentDish> toReturn = new ArrayList<>();
+		final String query = "SELECT * FROM COMMENTDISH ORDER BY COMMENTDATE";
+
+		final Connection conn = createConnection();
+
+		Statement statement = null;
+		ResultSet rs = null;
+		try
+		{
+			statement = conn.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next())
+			{
+				final CommentDish comment = new CommentDish();
+				comment.setId(rs.getInt("ID"));
+				comment.setDishId(rs.getInt("DISH"));
+				comment.setUsername(rs.getString("USER"));
+				comment.setComment(rs.getString("COMMENT"));
+				comment.setData(rs.getString("COMMENTDATE"));
+				toReturn.add(comment);
+			}
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(statement);
+			closeConnection(conn);
+		}
+		return toReturn;
+	}
+  
+  
+	public void deleteUser(String username) {
+		final String query = "DELETE FROM USER WHERE USERNAME=?";
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+
+			ps.executeQuery();
+
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+	}
+
+	public void deleteCommentUser(Integer id) {
+		final String query = "DELETE FROM COMMENTDISH WHERE ID=?";
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, id);
+
+			ps.executeQuery();
+
+		} catch (final SQLException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+	}
+	
+	public boolean addDailyMenu(int id, String date)
+    {
+		final String query = "INSERT INTO DAILYMENU (MENUDATE, DISH) VALUES (?,?)";
+
+		final Connection conn = createConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try
+		{
+			
+			java.sql.Date dataDB = new Date(dateSDF.parse(date).getTime());
+			ps = conn.prepareStatement(query);
+			ps.setDate(1, dataDB);
+			ps.setInt(2, id);
+
+			rs = ps.executeQuery();
+
+			return true;
+        } catch (final SQLException | ParseException e)
+		{
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(ps);
+			closeConnection(conn);
+		}
+		return false;
+    }
+	
+
 }

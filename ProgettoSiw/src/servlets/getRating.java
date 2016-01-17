@@ -30,6 +30,9 @@ public class getRating extends HttpServlet {
 			
 			String point = JsonDBManager.getInstance().getRating(dishId, username);
 			response.setCharacterEncoding("UTF-8");
+//			if(point.equals("[]"))
+//				point = "[{\"points\":0.0}]";
+			
 			response.getWriter().write(point);
 		}
 	}

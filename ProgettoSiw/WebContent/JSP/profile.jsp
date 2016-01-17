@@ -7,7 +7,6 @@
 
 %>
 
-
 <div id="pane">
 	<div id="panelForImage">
 		<img src="<%=user.getImageUrl()%>">
@@ -36,7 +35,7 @@
 			method : "POST",
 		  	url: "admin",
 		  	data : {
-				'username' : user["username"],
+				'username' : user["username"]
 			},
   			success: function(data) {
   				location.href="admin";
@@ -47,5 +46,6 @@
 		});
 		
 	}
+	
 </script>
 

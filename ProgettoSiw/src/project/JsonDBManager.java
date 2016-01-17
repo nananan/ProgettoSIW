@@ -83,8 +83,10 @@ public class JsonDBManager extends AbstractDBManager
 			ps.setString(2, username);
 			
 			rs = ps.executeQuery();
-
+			
 			json = toJSON(rs);
+			if(json.equals("[]"))
+				json = "[{\"points\":0.0}]";
 		} catch (final SQLException e)
 		{
 			e.printStackTrace();

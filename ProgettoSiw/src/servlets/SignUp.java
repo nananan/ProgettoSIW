@@ -33,12 +33,13 @@ public class SignUp extends HttpServlet {
 		User user = null;
 		if (request.getParameter("social").equals("true"))
 			user  = new User(request.getParameter("name"), "",
-					request.getParameter("email"), "", request.getParameter("imageUrl"), request.getParameter("social"));
+					request.getParameter("email"), "", request.getParameter("imageUrl"), request.getParameter("social"), "false");
 		else
 			user  = new User(request.getParameter("username"), request.getParameter("password"),
-					request.getParameter("email"), "", "",request.getParameter("social"));
+					request.getParameter("email"), "", "",request.getParameter("social"),"false");
 		BeanDBManager.getInstance().saveUser(user);
 		BeanDBManager.getInstance().setImageProfile(user);
+		BeanDBManager.getInstance().setAdmin(user.getUsername(), user.getAdmin());
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("user", user);

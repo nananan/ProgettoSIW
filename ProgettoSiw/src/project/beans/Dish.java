@@ -34,7 +34,15 @@ public class Dish implements Serializable {
 		this.imageUrl = imageUrl;
 		this.description = description;
 		this.category = category;
-
+	}
+	
+	public Dish(Integer id, String name, String imageUrl, String description, String category)
+	{
+		this.id = id;
+		this.name = name;
+		this.imageUrl = imageUrl;
+		this.description = description;
+		this.category = Category.getDishCategory(category);
 	}
 
 	public Integer getId()

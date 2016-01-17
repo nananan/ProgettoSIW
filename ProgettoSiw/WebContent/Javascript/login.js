@@ -72,9 +72,10 @@ function insertProfile() {
 		$.ajax({
 			  url: "JSP/profile.jsp",
 			  success: function(data) {
-				  $('body').append(data);
-				  isInsertProfile = true;
 			  }
+		}).done(function(data){
+			$('body').append(data);
+			isInsertProfile = true;
 		});
 	}
 	else {
@@ -132,9 +133,10 @@ function Login() {
         } else {
          console.log('Authorization failed.');
         }
-     },{scope: 'email'});
+     },{scope: 'email,user_photos'});
 }
 
+userIsNotPresent = true;
 function getUserInfo() {
 	FB.api('/me', {fields : [ 'email', 'name', 'picture.type(normal)']}, function(response) {
 
@@ -143,36 +145,63 @@ function getUserInfo() {
      //response.username   - User name
      //response.id         - id
      //response.email      - User email
-    	$.ajax({
-    		type : "POST",
-    		url : 'SignUp',
-    		data : {
-    			'name' : response.name,
-    			'username' : response.username,
-    			'email' : response.email,
-    			'imageUrl' : response.picture.data.url,
-    			'social' : true
-    		},
-    		success : function(data) {
-    			console.log(localStorage);
-    			localStorage["user"] = data;
-    			var jsonResp = eval("("+data+")");
-//    			if (localStorage["user"] == jsonResp["username"])
-//    				console.log("YOOOOOOO");
-    			if (jsonResp["user"] != "null") {
-    				deleteLoginAndInsertNameUser(jsonResp["username"]);
-    				socialUser = true;
-    			}
-    			else {
-    				userNotPresent();
-    			}
-    		},
-    		 error: function (data) {
-                  console.log("ERRORE");
-            }
-    	});
-    	
-     });
+		
+		$.ajax({
+			type : "POST",
+			url : 'Login',
+			data : {
+				'username' : response.name,
+				'social' : true
+			},
+			success : function(data) {
+				localStorage["user"] = data;
+				var jsonResp = eval("("+data+")");
+				if (jsonResp["user"] != "null") {
+					console.log("AAAAAAAAAH LOOOOOOOOOOOOGIN");
+					deleteLoginAndInsertNameUser(jsonResp["username"]);
+					userIsNotPresent = false;
+				}
+				else {
+					userNotPresent();
+				}
+			},
+			 error: function (data) {
+	              alert("ERRORE");
+	        }
+		}).done(function() {
+			if (userIsNotPresent) {
+		    	$.ajax({
+		    		type : "POST",
+		    		url : 'SignUp',
+		    		data : {
+		    			'name' : response.name,
+		    			'username' : response.username,
+		    			'email' : response.email,
+		    			'imageUrl' : response.picture.data.url,
+		    			'social' : true
+		    		},
+		    		success : function(data) {
+		    			console.log(localStorage);
+		    			localStorage["user"] = data;
+		    			console.log(data);
+		    			var jsonResp = eval("("+data+")");
+		//    			if (localStorage["user"] == jsonResp["username"])
+		//    				console.log("YOOOOOOO");
+		    			if (jsonResp["user"] != "null") {
+		    				deleteLoginAndInsertNameUser(jsonResp["username"]);
+		    				socialUser = true;
+		    			}
+		    			else {
+		    				userNotPresent();
+		    			}
+		    		},
+		    		 error: function (data) {
+		                  console.log("ERRORE");
+		            }
+		    	});
+			}
+	     })
+	});
 }
 
 function getPhoto()

@@ -26,12 +26,10 @@ public class Login extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		User user = null;
-//		if (request.getParameter("social").equals("0"))
-//		user = new User(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"), "", "",
-//				request.getParameter("social"));
-//		else
+		if (req.getParameter("social") != null && req.getParameter("social").equals("true"))
+			user = BeanDBManager.getInstance().getUser(req.getParameter("username"));
+		else
 			user = BeanDBManager.getInstance().getUser(req.getParameter("username"), req.getParameter("password"));
-		
 		if (user != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);

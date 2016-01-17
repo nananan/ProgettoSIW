@@ -26,6 +26,7 @@ function simpleLogin(json) {
 			}
 		},
 		 error: function (data) {
+			 console.log(json["username"]);
               alert("ERRORE");
         }
 	});
