@@ -11,6 +11,7 @@ import project.BeanDBManager;
 import project.beans.User;
 
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DeploymentConfiguration;
 import com.vaadin.server.Page;
@@ -30,6 +31,7 @@ import com.vaadin.ui.themes.Runo;
 
 @SuppressWarnings("serial")
 @Theme("progettosiw")
+@Title("Sezione Admin")
 public class ProgettoSiwUI extends UI {
 
 	private static String username;

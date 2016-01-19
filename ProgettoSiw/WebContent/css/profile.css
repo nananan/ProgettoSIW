@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
-* {
+/* * {
 	box-sizing: content-box !important;
-}
+} */
 
 #pane {
 	
@@ -25,7 +25,7 @@
 	
 	padding: 20px;
 	float: left;
-	
+	box-sizing: content-box !important;
 }
 
 #panelForImage {
@@ -88,7 +88,7 @@
     cursor: default;
 }
 
-.hr {
+#line {
 	position: relative;
 	display: flex;
 	width: 60%;

@@ -18,6 +18,8 @@
 	-webkit-box-shadow: 0 0 5px 1px #333;
 	-moz-box-shadow: 0 0 5px 1px #333;
 	box-shadow: 0 0 5px 1px #333;
+	
+	box-sizing: border-box !important;
 }
 
 .arrow-left {
@@ -45,10 +47,17 @@
     border: 5px solid #5D1012;
     box-shadow: 0px 0px 5px #272727;
     border-radius: 80px;
+    
+    box-sizing: border-box !important;
+    
 }
 
-img {
+.image img {
     max-width: 100%;
+ 	max-height: 100%;
+ 	cursor: pointer;
+ 	border-radius: 80px;
+ 	
 }
 
 p {
@@ -121,5 +130,7 @@ div.form input[type="password"] {
 	top: 1%;
 	right: 1%;
 	background-color: #862e2e;
+	
+	cursor: pointer;
 }
 

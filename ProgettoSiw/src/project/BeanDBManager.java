@@ -128,6 +128,30 @@ public class BeanDBManager extends AbstractDBManager
 		return false;
     }
     
+    public boolean setImageProfile(String username, String image_url) {
+    	String procedure = "{call setImageProfile(?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setString(1, username);
+			callableStatement.setString(2, image_url);
+			callableStatement.executeUpdate();
+			return true;
+        }
+        catch (final SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+        }
+		return false;
+    }
+    
     public boolean setAdmin(final String username, String admin) {
     	String query = "UPDATE USER SET ADMIN=? WHERE USERNAME=?";
     	final Connection conn = createConnection();

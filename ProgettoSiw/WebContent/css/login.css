@@ -9,6 +9,7 @@
 	
 	background-color: #5C697A;
 	opacity: 0.5;
+	
 }
 
 #paneLogin {
@@ -40,12 +41,16 @@
 	
 	background-color: #862e2e;
 	
+	box-sizing: border-box !important;
+	
 }
 
 input {
    width: 100%;
    margin: 8px 0px;
    padding: 12px;
+   
+   box-sizing: border-box !important;
 }
  
 div.txt {
@@ -146,11 +151,12 @@ a.register {
   -ms-transition: all 0s;
   -o-transition: all 0s;
   transition: all 0s;
-  
+   cursor: pointer;
 }
   
 a.register:before {
   padding-right: 6px;
+  
 }
 
 a.register:hover {
@@ -198,10 +204,8 @@ a.register:active {
     color: #555;
     text-shadow: 0 1px fade(#FFF, 40%);
     
-   
 }
 
-      
 div.hr {
 	-webkit-flex: 1;
 	-moz-flex: 1;
@@ -257,6 +261,8 @@ div.hr:before {
     -webkit-box-shadow: 0 0 0 4px fade(#3b5998, 60%);
     -moz-box-shadow: 0 0 0 4px fade(#3b5998, 60%);
     box-shadow: 0 0 0 4px fade(#3b5998, 60%);
+
+	cursor: pointer;
 }
 
 
@@ -369,4 +375,5 @@ border-radius: 10px!important; */
 	position:absolute;
 	top: 1%;
 	right: 1%;
+	cursor: pointer;
 }

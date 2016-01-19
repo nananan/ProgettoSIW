@@ -2,12 +2,21 @@ var socialUser = false;
 
 function insertPaneLogin() {
 	
+//	$.ajax({
+//	  url: "login.html",
+//	  success: function(data) {
+//	  }
+//	}).done(function(data){
+//		$('body').append(data)
+//	});
+	
 	$.ajax({
-	  url: "login.html",
-	  success: function(data) {
-	  }
-	}).done(function(data){
-		$('body').append(data)
+		  url: "login.html",
+		  success: function(data) {
+			  $('body').append(data)
+		  }
+		}).done(function(data){
+			$('#paneLogin').toggle();
 	});
 }
 
@@ -43,7 +52,6 @@ function executeLogin() {
 			localStorage["user"] = data;
 			var jsonResp = eval("("+data+")");
 			if (jsonResp["user"] != "null") {
-				console.log("AAAAAAAAAH LOOOOOOOOOOOOGIN");
 				deleteLoginAndInsertNameUser(jsonResp["username"]);
 			}
 			else {
@@ -95,16 +103,18 @@ function ok() {
 }
 
 function executeLogOut() {
-	$('#menu li').eq(3).remove();
-	$('ul#menu').last().append('<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>');
-	$('#nameUser p').remove();
-	$('#pane').remove();
-	$('.arrow-top').remove();
+//	$('#menu li').eq(3).remove();
+//	$('ul#menu').last().append('<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>');
+//	$('#nameUser p').remove();
+//	$('#pane').remove();
+//	$('.arrow-top').remove();
 	
 	if (socialUser)
 		Logout();
 	else
 		localStorage["user"] = null;
+	
+	location.href="main.html";
 }
 
 window.fbAsyncInit = function() {
@@ -157,13 +167,11 @@ function getUserInfo() {
 				localStorage["user"] = data;
 				var jsonResp = eval("("+data+")");
 				if (jsonResp["user"] != "null") {
-					console.log("AAAAAAAAAH LOOOOOOOOOOOOGIN");
 					deleteLoginAndInsertNameUser(jsonResp["username"]);
 					userIsNotPresent = false;
 				}
-				else {
-					userNotPresent();
-				}
+				else
+					userIsNotPresent = true;
 			},
 			 error: function (data) {
 	              alert("ERRORE");

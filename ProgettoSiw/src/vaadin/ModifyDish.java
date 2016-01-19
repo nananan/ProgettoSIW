@@ -85,7 +85,7 @@ public class ModifyDish extends FormLayout {
         
         preview.setHeight("80px");
         name.setHeight("59px");
-        description.setHeight("160px");
+        description.setHeight("150px");
         
         HorizontalLayout actions = new HorizontalLayout(save, annulla);
         actions.setSpacing(true);
@@ -94,7 +94,7 @@ public class ModifyDish extends FormLayout {
 			category.addItem(cat);
 		}
         
-		addComponents(actions, preview, name, description, category);
+		addComponents(preview, name, description, category, actions);
     }
 
     public void save(Button.ClickEvent event) {
