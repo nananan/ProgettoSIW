@@ -12,8 +12,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import project.beans.Category;
+import project.beans.Dish;
+import project.beans.User;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -308,6 +314,66 @@ public class JsonDBManager extends AbstractDBManager
 		}
 		return false;
 	}
+    
+    public ArrayList<Float> getRatingForDish(int idDish)
+   	{
+   		final ArrayList<Float> toReturn = new ArrayList<>();
+   		final String query = "SELECT POINTS FROM RATING WHERE RATING.DISH=?";
+
+   		final Connection conn = createConnection();
+
+   		PreparedStatement ps = null;
+   		ResultSet rs = null;
+   		try
+   		{
+   			ps = conn.prepareStatement(query);
+   			ps.setInt(1, idDish);
+
+   			rs = ps.executeQuery();
+
+   			while (rs.next())
+   			{
+   				float point = rs.getFloat("POINTS");
+   				
+   				toReturn.add(point);
+   			}
+   		} catch (final SQLException e)
+   		{
+   			e.printStackTrace();
+   		} finally {
+   			closeResultSet(rs);
+   			closeStatement(ps);
+   			closeConnection(conn);
+   		}
+   		return toReturn;
+   	}
+    
+    
+    public boolean addRatingDish(int dishId, float rating) {
+    	String procedure = "{call addRatingDish(?,?)}";
+		CallableStatement callableStatement = null;
+		final Connection connection = createConnection();
+		try
+		{
+			callableStatement = connection.prepareCall(procedure);
+			callableStatement.setInt(1, dishId);
+			callableStatement.setFloat(2, rating);
+			callableStatement.executeUpdate();
+			return true;
+        }
+        catch (final SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+			closeStatement(callableStatement);
+			closeConnection(connection);
+        }
+		return false;
+    }
+    
+    
     
     public boolean modifyComment(int commentID, String comment)
 	{
