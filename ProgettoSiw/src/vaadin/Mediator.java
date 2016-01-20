@@ -245,7 +245,7 @@ public class Mediator implements Serializable {
 	public void insertChooseMenu() {
 		deleteAllComponent();
 		chooseMenu = new ChooseDailyMenu();
-		DateField menuDate = new DateField("Data Menu");
+		final DateField menuDate = new DateField("Data Menu");
 		correctData = true;
 		
 		menuDate.addListener(new DateField.ValueChangeListener() {

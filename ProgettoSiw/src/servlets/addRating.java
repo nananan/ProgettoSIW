@@ -1,12 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ws.axis2.UseServiceClient;
 
 import project.JsonDBManager;
 
@@ -29,7 +32,20 @@ public class addRating extends HttpServlet {
 			String username = request.getParameter("username");
 			float rating = Float.parseFloat(request.getParameter("rating"));
 			
-			boolean c = JsonDBManager.getInstance().addRating(dishId, username, rating);
+			if (rating > 0) {
+				boolean isInsertWithSuccess = JsonDBManager.getInstance().addRating(dishId, username, rating);
+				if (isInsertWithSuccess) {
+					ArrayList<Float> arrayValue = JsonDBManager.getInstance().getRatingForDish(dishId);
+					
+					if (!arrayValue.isEmpty()) {
+						UseServiceClient serviceAVG = new UseServiceClient();
+						float value = serviceAVG.calculateAVG(arrayValue);
+						
+						if (value != -1)
+							JsonDBManager.getInstance().addRatingDish(dishId, value);
+					}
+				}
+			}
 		}
 	}
 }

@@ -122,6 +122,16 @@ VALUES (name, description, image, category);
 END; $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE addRatingDish (IN dishId INT, IN rating FLOAT)
+BEGIN
+UPDATE DISH
+SET DISH.RATING = rating
+WHERE ID = dishId;
+END; $$
+DELIMITER ;
+
+
 
 DELIMITER $$
 CREATE PROCEDURE insertComment(IN dish INT, IN user VARCHAR(100), IN comment VARCHAR(500), IN date DATE)
@@ -189,8 +199,8 @@ INSERT INTO CATEGORY(TYPE,POINTS)
 VALUES ('Side Dish',1);
 
 
-INSERT INTO DISH (NAME, DESCRIPTION, RATING, IMAGE_URL, CATEGORY)
-VALUES ('Pasta alla Portofino','La pasta alla Portofino è un gustoso primo piatto che nasce dal delizioso incontro fra il pesto genovese e il sugo di pomodoro. Si narra che l’idea sia nata quando un ristoratore di Portofino, appunto, non aveva sufficiente pesto per soddisfare tutte le ordinazioni e decise, così, di mischiarlo al sugo di pomodoro semplice per aumentare la quantità del condimento.', 2,'http://img.tgcom24.mediaset.it/binary/tgcom24/95.$plit/C_4_ricetta_350_upiFoto.jpg', 1);
+INSERT INTO DISH (NAME, DESCRIPTION, IMAGE_URL, CATEGORY)
+VALUES ('Pasta alla Portofino','La pasta alla Portofino è un gustoso primo piatto che nasce dal delizioso incontro fra il pesto genovese e il sugo di pomodoro. Si narra che l’idea sia nata quando un ristoratore di Portofino, appunto, non aveva sufficiente pesto per soddisfare tutte le ordinazioni e decise, così, di mischiarlo al sugo di pomodoro semplice per aumentare la quantità del condimento.','http://img.tgcom24.mediaset.it/binary/tgcom24/95.$plit/C_4_ricetta_350_upiFoto.jpg', 1);
 
 INSERT INTO DISH (NAME, DESCRIPTION, IMAGE_URL, CATEGORY)
 VALUES ('Mezze maniche alla Norcina','Piatto tipico di Perugia e Norcia, caratterizzata dalla presenza fondamentale della salsiccia umbra, dal sapore deciso e notevole.','http://media-cdn.tripadvisor.com/media/photo-s/06/06/e1/a0/da-pallotta-1820.jpg', 1);

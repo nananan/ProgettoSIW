@@ -73,7 +73,6 @@ public class BeanDBManager extends AbstractDBManager
 		return toReturn;
 	}
     
-    
 
 	public boolean saveUser(final User user)
     {
