@@ -14,10 +14,12 @@ var point = 0;
 var user = eval("("+localStorage["user"]+")");
 
 function deletePanelMenu() {
+	$('#quadMenu').empty();
 	$("#panelForMenu").toggle();
 }
 
 function deletePanelBestDish() {
+	$('#quadBestDish').empty();
 	$("#panelForBestDish").toggle();
 }
 
@@ -46,33 +48,32 @@ function deletePanelChooseMenu() {
 	for (i = 0; i < contImage; i++) 
 		arrayRating.splice(i,1,$("#valueRating"+i).val());
 	
-//	if (checkIfThereIsARating(contImage)) {
-		for (i = 0; i < arrayRating.length; i++) {
-//			if (arrayRating[i] != 0) {
-				$.ajax({
-					method : "POST",
-					url : 'addRating',
-					data : {
-						'dishId' : arrayDishId[i],
-						'username' : user["username"],
-						'rating' : $("#valueRating"+i).val()
-					},
-					success : function(data) {
-					}
-				});
-//			}
-		}
-//	}
+	for (i = 0; i < arrayRating.length; i++) {
+		$.ajax({
+			method : "POST",
+			url : 'addRating',
+			data : {
+				'dishId' : arrayDishId[i],
+				'username' : user["username"],
+				'rating' : $("#valueRating"+i).val()
+			},
+			success : function(data) {
+			}
+		});
+	}
 	
 //	for (i = 0; i < contImage; i++) 
 //	{
 //		$("#"+i).remove();
 //		$("#rating"+i).remove();
+//		$(".dish"+i).remove();
 //	}
 	
-	$('#dishPrimo').remove();
-	$('#dishSecondo').remove();
-	$('#dishContorno').remove();
+//	$('#dishPrimo').remove();
+//	$('#dishSecondo').remove();
+//	$('#dishContorno').remove();
+	
+	$('#quad').empty();
 	
 	realComment = [];
 	arrayComment = [];
@@ -99,12 +100,6 @@ function showChoiseMenu() {
 
 	var user = eval("("+localStorage["user"]+")");
 	if(user != null) {
-//		var posTop = 85;
-//		var countPrimo = 0;
-//		var countSecondo = 0;
-//		var countContorno = 0;
-//		var count = 0;
-		
 		$.ajax({
 			method : "POST",
 			url : 'GetMenuDaily',
@@ -132,9 +127,9 @@ function showChoiseMenu() {
 					},
 					success : function(data) {
 						var resp = eval(data);
-						console.log(resp[0]);
+//						console.log(resp[0]);
 						arrayRating[i]= resp[0]["points"];
-						console.log(arrayRating[i]);
+//						console.log(arrayRating[i]);
 					}
 				});
 			}
@@ -142,10 +137,12 @@ function showChoiseMenu() {
 			$.ajax({
 				  url: "JSP/chooseMenu.jsp"
 				}).done(function(data){
-				$('#quad').append(data);
-				$('#pane').remove();
-				$('.arrow-top').remove();
+					$('#quad').append(data);
+					$('#pane').remove();
+					$('.arrow-top').remove();
 			})
+		}).done(function(){
+			checkDishSelected();
 		});
 		$('body').append('<p id="point">POINT:'+point+'</p>');
 	}
@@ -165,16 +162,18 @@ function showBestDishes(){
 	});	
 }
 
-//function checkDishSelected() {
-//	for (i=0; i<arrayCont.length; i++) {
-//		$('#quad').append('<div id="dishBorder"><a id="dishBorder'+arrayCont[i]+
-//				'"><img style="top:'+posTopSelected[arrayCont[i]]+'%; left:'+posLeftSelected[arrayCont[i]]+
-//				'%;" onclick="setBorderSelect('+posTopSelected[arrayCont[i]]+","+posLeftSelected[arrayCont[i]]+","+arrayCont[i]+","+arrayCategory[arrayCont[i]]+')" /></a></div>');
-//		
-//		bool[arrayCont[i]] = true;
-//		console.log("OOOOH "+arrayCont[i]+"    "+i);
-//	}
-//}
+function checkDishSelected() {
+	for (i=0; i<arrayCont.length; i++) {
+		console.log("SO: "+arrayCont[i]);
+		if (arrayCont[i] != null) {
+			$('#quad').append('<div id="dishBorder"><a id="dishBorder'+arrayCont[i]+
+					'"><img style="top:'+posTopSelected[arrayCont[i]]+'%; left:'+posLeftSelected[arrayCont[i]]+
+					'%;" onclick="setBorderSelect('+posTopSelected[arrayCont[i]]+","+posLeftSelected[arrayCont[i]]+","+arrayCont[i]+","+arrayCategory[arrayCont[i]]+')" /></a></div>');
+			
+			bool[arrayCont[i]] = true;
+		}
+	}
+}
 
 function setBorderSelect(posTop,pos,cont,category) {
 	if (bool[cont] == null)
@@ -188,17 +187,10 @@ function setBorderSelect(posTop,pos,cont,category) {
 			else if (category == "2")
 				point += 2;
 			
-			if (posTopSelected[cont] == null)
-				posTopSelected[cont] = posTop;
-			else
-				posTopSelected.splice(cont,1,posTop);
-			if (posLeftSelected[cont] == null)
-				posLeftSelected[cont] = pos;
-			else
-				posLeftSelected.splice(cont,1,pos);
-
+			posTopSelected[cont] = posTop;
+			posLeftSelected[cont] = pos;
 			arrayCategory[cont] = category;
-			arrayCont.push(cont);
+			arrayCont[cont] = cont;
 		}
 		else
 			alert("Hai superato i punti.");
@@ -211,6 +203,7 @@ function setBorderSelect(posTop,pos,cont,category) {
 		else if (category == "2")
 			point -= 2;
 		
+		arrayCont.splice(cont,1, null);
 	}
 	if (point <= 5) {
 		$('#point').remove();

@@ -5,9 +5,18 @@
 <link rel="stylesheet" type="text/css" href="css/fileChooser.css">
 
 <div class="form2">
+	<div class="closeButton"><img onclick="removePanelImage()" src="images/closeButton.png"></div>
+
 	<form method="post" action="UploadAvatar" enctype="multipart/form-data">
 <!-- 	Select file to upload: -->
 	<input type="file" name="dataFile" id="fileChooser"/><br/><br/>
 	<input type="submit" value="Upload" />
 	</form>
 </div>
+
+<script type="text/javascript">
+
+	function removePanelImage(){
+		$('.form2').remove();
+	}
+</script>

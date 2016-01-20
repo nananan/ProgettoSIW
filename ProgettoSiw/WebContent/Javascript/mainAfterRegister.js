@@ -10,9 +10,12 @@ $.ajax({
 		}
 }).done(function(){
 	$.ajax({
-		  url: "login.html"
+		  url: "login.html",
+		  success: function(data) {
+			  $('body').append(data);
+		  }
 		}).done(function(data){
-		$('body').append(data);
+			$('#paneLogin').toggle();
 		})
 	
 }).done(function(){

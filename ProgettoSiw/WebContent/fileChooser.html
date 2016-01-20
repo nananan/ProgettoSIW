@@ -3,15 +3,26 @@
 
 <div class="form2">
 <!-- <form method="post" enctype="multipart/form-data"> -->
+	<img class="closeButtonLogin" onclick="deleteFileChooser()" src="images/closeButton.png">
 	<input id="fileChoosed" type="file" name="pic" accept="image/*">
 	<input onclick="checkfile()" value="Submit" type="submit"> 
 	
-	<script>
+<!-- 	<script>
 	function checkfile()
 	{
 		/* console.log($('#fileChoosed').val()); */
 		/* $('body').append('<img style="position:absolute" src="'+$('#fileChooser').val()+'"></img>');
- */	}</script> 
+ */	}</script>  -->
 <!-- </form> -->
+<script>
+	
+	function deleteFileChooser() {
+		
+		/* $('.closeButtonLogin').remove(); */
+		$('.form2').remove();
+	}
+</script>
+
 </div>
+
 

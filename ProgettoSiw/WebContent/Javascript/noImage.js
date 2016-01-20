@@ -8,7 +8,27 @@ $.ajax({
 	if (json != null) {
 			simpleLogin(json);
 		}
-});
+	}).done(function(){
+		$.ajax({
+			  url: "login.html",
+			  success: function(data) {
+				  $('body').append(data);
+			  }
+			}).done(function(data){
+				$('#paneLogin').toggle();
+			})
+		
+	}).done(function(){
+		$.ajax({
+			  url: "register.html",
+			  success: function(data) {
+				  $('body').append(data)
+			  }
+			}).done(function(data){
+				$('#register').toggle();
+		});
+		
+	});
 
 	
 function simpleLogin(json) {
@@ -26,8 +46,8 @@ function simpleLogin(json) {
 			}
 		},
 		 error: function (data) {
-//			 console.log(json["username"]);
-             alert("ERRORE");
+			 console.log(json["username"]);
+              alert("ERRORE");
         }
 	});
 }

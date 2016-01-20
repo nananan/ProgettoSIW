@@ -347,8 +347,9 @@ border-radius: 10px!important; */
 	padding: 20px;
 	margin: 0 auto;
 	
-	position: relative;
-	top: 10%;
+	position: absolute;
+	top: 40%;
+	left: 28%;
 	
 	-webkit-transform: translateY(-100%);
 	-moz-transform: translateY(-100%);
@@ -364,7 +365,7 @@ border-radius: 10px!important; */
 	-moz-box-shadow: 0 0 5px 1px #333;
 	box-shadow: 0 0 5px 1px #333;
 	
-	background-color: #5C697A;
+	background-color: #862E2E;
 }
 
 

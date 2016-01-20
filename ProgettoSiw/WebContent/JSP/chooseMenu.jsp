@@ -48,21 +48,13 @@ if (arrDishId.isArray()) {
 				
 %>
 			<div id="dishPrimo">
-				<div>
 					<p id="categoryDish" style="top:<%=posTopPrimo%>%; left:<%=posPrimo+10%>%">Primo</p>
-				</div>
-				<div>
 					<p id="nameDish" style="top:<%=posTopPrimo+5%>%; left:<%=posPrimo+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
-				<div>
-					<a id="dish">
+					<a id="dish" class="dish<%=contImage%>">
 						<img onclick="setBorderSelect(<%=posTopPrimo+15%>,<%=posPrimo%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style=" top:<%=posTopPrimo+15%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
-				</div>
 		            	
-	           	<div>
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopPrimo+60%>%; left:<%=posPrimo+1%>%" ></textarea>
-           		</div>
 				
 				<!-- <script>
 					checkDishSelected();
@@ -81,22 +73,14 @@ if (arrDishId.isArray()) {
 %>
 
 			<div id="dishSecondo">
-				<div>
 					<p id="categoryDish" style="top:<%=posTopSecondo%>%; left:<%=posSecondo+10%>%">Secondo</p>
-				</div>
 		            	
-				<div>
 					<p id="nameDish" style="top:<%=posTopSecondo+5%>%; left:<%=posSecondo+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
-				<div>
 					<a id="dish"">
 						<img onclick="setBorderSelect(<%=posTopSecondo+15%>,<%=posSecondo%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style="top:<%=posTopSecondo+15%>%; left:<%=posSecondo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
-				</div>
 		            	
-	           	<div>
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopSecondo+60%>%; left:<%=posSecondo+1%>%" ></textarea>
-           		</div>
 				
 				<div id="rating<%=contImage%>">
 		  			<div id=container style="position:absolute; top:<%=posTopSecondo+85%>%; left:<%=posSecondo%>%">
@@ -111,22 +95,14 @@ if (arrDishId.isArray()) {
 			else if (objNode.get("category").asText().equals("3")) {
 %>
 			<div id="dishContorno">
-				<div>
 					<p id="categoryDish" style="top:<%=posTopContorno%>%; left:<%=posContorno+10%>%">Contorno</p>
-				</div>
 		            	
-				<div>
 					<p id="nameDish" style="top:<%=posTopContorno+5%>%; left:<%=posContorno+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
-				<div>
 					<a id="dish"">
 						<img onclick="setBorderSelect(<%=posTopContorno+15%>,<%=posContorno%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style="top:<%=posTopContorno+15%>%; left:<%=posContorno%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
-				</div>
 		            	
-	           	<div>
 	           		<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento" style="top:<%=posTopContorno+60%>%; left:<%=posContorno+1%>%" ></textarea>
-           		</div>
 				
 				<div id="rating<%=contImage%>">
 		  			<div id=container style="position:absolute; top:<%=posTopContorno+85%>%;  left:<%=posContorno%>%">

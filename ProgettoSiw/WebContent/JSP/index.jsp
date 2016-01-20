@@ -32,12 +32,14 @@
 		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
 		<li><a href="#">Altro</a></li>
+		<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
 		
 		<script>
 			if (json != null)
 				simpleLogin(json);
-			else
-				$('ul#menu').last().append('<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>');
+			/* else
+			 	$('ul#menu').last().append('<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>');
+			*/
 		</script>
 		
 	</ul>

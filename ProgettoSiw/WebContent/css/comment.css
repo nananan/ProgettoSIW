@@ -103,16 +103,16 @@
 	
 	padding: 5px 20px 5px !important;
 	font-size: 15px !important;
-	background-color: #008000;
+	background-color: #233023;
 	font-weight: bold;
-	text-shadow: 1px 1px #008000;
+	text-shadow: 1px 1px #233023;
 	color: #ffffff;
 	border-radius: 100px;
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
-	border: 1px solid #008000;
+	border: 1px solid #233023;
 	cursor: pointer;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(36, 47, 36, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	
@@ -125,16 +125,16 @@
 	
 	padding: 5px 20px 5px !important;
 	font-size: 15px !important;
-	background-color: #ff0000;
+	background-color: #1D1D24;
 	font-weight: bold;
-	text-shadow: 1px 1px #ff0000;
+	text-shadow: 1px 1px #1D1D24;
 	color: #ffffff;
 	border-radius: 100px;
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
-	border: 1px solid #ff0000;
+	border: 1px solid #1D1D24;
 	cursor: pointer;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(37, 31, 54, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
@@ -145,16 +145,16 @@
 	
 	padding: 5px 20px 5px !important;
 	font-size: 15px !important;
-	background-color: #ff0000;
+	background-color: #1D1D24;
 	font-weight: bold;
-	text-shadow: 1px 1px #ff0000;
+	text-shadow: 1px 1px #1D1D24;
 	color: #ffffff;
 	border-radius: 100px;
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
-	border: 1px solid #ff0000;
+	border: 1px solid #1D1D24;
 	cursor: pointer;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(37, 31, 54, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }

@@ -70,20 +70,27 @@ public class UploadAvatar extends HttpServlet {
 	                FileItem item = (FileItem) iter.next();
 
 	                if (!item.isFormField()) {
-	                    String fileName = new File(item.getName()).getName();
-	                    String filePath = "/home/eliana/git/ProgettoSIW/ProgettoSiw/resources/profileImage/"+ fileName;
-	                    File uploadedFile = new File(filePath);
-	                    
-	                    //getFilePath.setFilePath("images/profileImage/"+ fileName);
-	                    getFilePath.setFilePath("/ProgettoSiw/ImageServlet?name="+ fileName);
-	                    // saves the file to upload directory
-	                    item.write(uploadedFile);
+
+	                	String fileName = new File(item.getName()).getName();
+	                	if (!fileName.equals("")) {
+	                		String filePath = "/home/eliana/git/ProgettoSIW/ProgettoSiw/resources/profileImage/"+ fileName;
+		                    File uploadedFile = new File(filePath);
+		                    
+		                    //getFilePath.setFilePath("images/profileImage/"+ fileName);
+		                    getFilePath.setFilePath("/ProgettoSiw/ImageServlet?name="+ fileName);
+		                    // saves the file to upload directory
+		                    item.write(uploadedFile);
+		                    // displays done.jsp page after upload finished
+		                    getServletContext().getRequestDispatcher("/JSP/changeAvatarDone.jsp").forward(
+		                    		request, response);
+	                	}
+	                	else {
+	                		getServletContext().getRequestDispatcher("/JSP/index.jsp").forward(
+	                				request, response);
+	                	}
 	                }
 	            }
 
-	            // displays done.jsp page after upload finished
-	            getServletContext().getRequestDispatcher("/JSP/changeAvatarDone.jsp").forward(
-	                    request, response);
 
 	        } catch (FileUploadException ex) {
 	            throw new ServletException(ex);
