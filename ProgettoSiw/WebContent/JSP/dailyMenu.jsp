@@ -22,7 +22,7 @@
 		{ 
 			if (objNode.get("category").asText().equals("1")) {
 %>
-			<div id="dishPrimo">
+			<div id="dishPrimo" style="text-align:center;">
 				<div>
 					<p id="categoryDish" style="top:<%=posTopPrimo%>%; left:<%=posPrimo+10%>%">Primo</p>
 				</div>
@@ -30,7 +30,7 @@
 					<p id="nameDish" style="top:<%=posTopPrimo+5%>%; left:<%=posPrimo+5%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 				<div>
-					<a id="dish">
+					<a id="dishMenu">
 						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style=" top:<%=posTopPrimo+15%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
 				</div>
@@ -56,7 +56,7 @@
 			}
 			else if (objNode.get("category").asText().equals("2")) {
 %>
-			<div id="dishSecondo">
+			<div id="dishSecondo" style="text-align:center;">
 				<div>
 					<p id="categoryDish" style="top:<%=posTopSecondo%>%; left:<%=posSecondo+10%>%">Secondo</p>
 				</div>
@@ -65,7 +65,7 @@
 					<p id="nameDish" style="top:<%=posTopSecondo+5%>%; left:<%=posSecondo+5%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 				<div>
-					<a id="dish"">
+					<a id="dishMenu">
 						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style="top:<%=posTopSecondo+15%>%; left:<%=posSecondo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
 				</div>
@@ -99,7 +99,7 @@
 					<p id="nameDish" style="top:<%=posTopContorno+5%>%; left:<%=posContorno+5%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 				<div>
-					<a id="dish"">
+					<a id="dishMenu">
 						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style="top:<%=posTopContorno+15%>%; left:<%=posContorno%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
 				</div>

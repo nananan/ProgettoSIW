@@ -1,5 +1,20 @@
-
 function createAccount() {
+	var isAllInsert = true;
+	
+	if ($('#email').val() == "Email Address") {
+		document.getElementById("email").style.borderColor = "red";
+		isAllInsert = false;
+	}
+	if ($('#username').val() == "Username") {
+		document.getElementById("username").style.borderColor = "red";
+		isAllInsert = false;
+	}
+	if ($('#password').val() == "password") {
+		document.getElementById("password").style.borderColor = "red";
+		isAllInsert = false;
+	}
+	
+	if (isAllInsert) {
 		$.ajax({
 			type : "POST",
 			url : 'SignUp',
@@ -8,7 +23,7 @@ function createAccount() {
 				'password' : $('#password').val(),
 				'email' : $("#email").val(),
 				'social' : false,
-//				'profileImage' : "file:///home/eliana/SIW/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ProgettoSiw/data/worms.jpg"
+				'profileImage' : "images/profileImage/noImage.png"
 			},
 			success : function(data) {
 				// FARE PANNELLINO
@@ -16,13 +31,14 @@ function createAccount() {
 				$('#register').toggle();
 				$('#paneLogin').toggle();
 				$('#paneBottomLogin').toggle();
-				$('body').append('<div id="nameUser"><p>'+$('#username').val()+'</p></div>');
+				$('body').append('<div id="nameUser"><div id="quadName" onclick="insertProfile()">'+$('#username').val()+'<div></div>');
 				deleteLoginAndInsertNameUser($('#username').val());
 			},
 			 error: function (data) {
 	              alert("ERRORE");
             }
 		});
+	}
 } 
 
 
@@ -47,7 +63,7 @@ function deleteLoginAndInsertNameUser(username) {
 	$('#paneBottomLogin').remove();
 	$('#menu li').eq(3).remove();
 //	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
-	$('body').append('<div id="nameUser"><p onclick="insertProfile()">'+username+'</p></div>');
+	$('body').append('<div id="nameUser"><div id="quadName" onclick="insertProfile()">'+username+'<div></div>');
 }
 
 
@@ -63,17 +79,13 @@ function createAccountA(file) {
 			'profileImage' : file
 		},
 		success : function(data) {
-			// FARE PANNELLINO
 			localStorage["user"] = data;
 			$('#register').toggle();
 			$('#paneLogin').toggle();
 			$('#paneBottomLogin').toggle();
-			$('body').append('<div id="nameUser"><p>'+$('#username').val()+'</p></div>');
+			$('body').append('<div id="nameUser"><div id="quadName" onclick="insertProfile()">'+$('#username').val()+'<div></div>');
 			deleteLoginAndInsertNameUser($('#username').val());
-		},
-		 error: function (data) {
-				console.log("ERRORE QUANTO UNA CASA");
-        }
+		}
 	});
 } 
 

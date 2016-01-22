@@ -3,6 +3,10 @@
 <html> -->
 <head>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/info.css">
+	<link rel="stylesheet" type="text/css" href="css/profile.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="Javascript/login.js"></script>
@@ -12,7 +16,6 @@
 
 <% 
 	User user = (User) session.getAttribute("user");
-
 %>
 
 <body>
@@ -31,7 +34,7 @@
 	<ul id="menu">
 		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
-		<li><a href="#">Altro</a></li>
+		<li><a onclick="insertPaneInfo()">Info</a></li>
 		<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
 		
 		<script>
@@ -71,6 +74,8 @@
 			<p id=mensaText><i>Mensa del Teatro</i></p>
 		</div>
 	</div>
+	
+	<div id="popupSection"></div>
 	
 </body>
 </html>

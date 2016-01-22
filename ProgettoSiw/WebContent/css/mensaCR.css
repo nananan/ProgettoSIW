@@ -112,7 +112,25 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 	position:absolute;
 	top: 15%;
 	right: 3%;
+	
+	cursor: pointer;
 }
+
+#dishMenu img {
+	position: absolute;
+	top: 15%;
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+
+	border: 2px solid #000;
+
+	width: 25%;
+	height: 40%;
+	cursor: pointer;
+}
+
 
 #dish img {
 	position: absolute;
@@ -126,7 +144,6 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 
 	width: 25%;
 	height: 40%;
-	
 }
 
 #dishBorder img{
@@ -152,6 +169,7 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 	font-family: Verdana, sans-serif;
     font-size: 18px;
     color: #334f74;
+    cursor: default;
 }
 
 #categoryDish {
@@ -161,6 +179,7 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 	font-family: Verdana, sans-serif;
     font-size: 18px;
     color: #334f74;
+    cursor: default;
 }
 
 #descriptionDish {
@@ -174,6 +193,7 @@ ul#menuDishes li.active, ul#menuDishes li:hover {
 	font-family: Verdana, sans-serif;
     font-size: 11px;
     color: #334f74;
+    cursor: default;
 }
 
 

@@ -4,14 +4,14 @@
 	box-sizing: content-box !important;
 } */
 
-#pane {
+#paneInfo {
 	
 	width: 25%;
-/* 	height: 30%; */
+	height: auto;
 	
 	position: absolute;
 	top: 12%;
-	right: 7%;
+	right: 20%;
 	
 	background-color: #862e2e;
 
@@ -36,11 +36,9 @@
 	width: 100px;
 	height: 100px;
 
-	position: relative;
-	
 	border-radius: 50%; 
 	border:solid 2px #000; 
-	margin-bottom:10px
+	
 }
 
 #panelForImage p {
@@ -61,7 +59,7 @@
 
 }
 
-#username p {
+#title p {
 	position: relative;
 	float: top;
 	
@@ -69,6 +67,7 @@
 	
 	margin-left: 130px;
 	margin-bottom: 0px;
+	margin-top: 0px;
 	
 	font-family:Liberation Serif Bold Italic;
     font-size: 15px;
@@ -76,7 +75,7 @@
     cursor: default;
 }
 
-#email p  {
+#info p  {
 	margin-left: 130px;
 	margin-bottom: 0px;
 	margin-top: 0px;
@@ -149,13 +148,13 @@
 	margin: 0px 0px 0px 25px;
 }
 
-.arrow-top {
+.arrow-topInfo {
 	width: 0; 
 	height: 0; 
 	
 	position: absolute;
 	top: 10.5%;
-	right: 9%;
+	right: 22%;
 	
 	border-bottom: 10px solid #862e2e; 
 	border-right:10px solid transparent; 

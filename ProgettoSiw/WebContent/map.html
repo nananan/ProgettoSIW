@@ -2,20 +2,26 @@
 <html>
   <head>
 	<link rel="stylesheet" type="text/css" href="css/map.css">  
-	<link rel="stylesheet" type="text/css" href="css/index.css">  
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/info.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="Javascript/login.js"></script>
+    <script  type='text/javascript'src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type='text/javascript' src="Javascript/map.js"></script>
 	<title>Map</title>
 
+  </head>
+
+  <body>
 	<ul id="menu">
 		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
-		<li><a href="#">Altro</a></li>
+		<li><a onclick="insertPaneInfo()">Info</a></li>
 	</ul>
 
-    <script  type='text/javascript'src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type='text/javascript' src="Javascript/map.js"></script>
-  </head>
-  <body>
     <div id="map"></div>
+	<div id="popupSection"></div>
+
   </body>
 </html>

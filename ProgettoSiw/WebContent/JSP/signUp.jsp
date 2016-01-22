@@ -2,9 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
    pageEncoding="ISO-8859-1"%>
 
-<link rel="stylesheet" type="text/css" href="css/register.css">
-<script type="text/javascript" src="Javascript/signUp.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- <script type="text/javascript" src="Javascript/signUp.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
 
 <% getFilePath file = getFilePath.getInstance();
 %>

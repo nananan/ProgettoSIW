@@ -71,10 +71,11 @@ function deleteLoginAndInsertNameUser(username) {
 	$('#menu li').eq(3).remove();
 	
 //	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
-	$('body').append('<div id="nameUser"><p onclick="insertProfile()">'+username+'</p></div>');
+	$('body').append('<div id="nameUser"><div id="quadName" onclick="insertProfile()">'+username+'<div></div>');
 }
 
 isInsertProfile = false;
+isInsertInfo = false;
 function insertProfile() {
 	if (!isInsertProfile) {
 		$.ajax({
@@ -82,8 +83,11 @@ function insertProfile() {
 			  success: function(data) {
 			  }
 		}).done(function(data){
+			$('#paneInfo').remove();
+			$('.arrow-topInfo').remove();
 			$('body').append(data);
 			isInsertProfile = true;
+			isInsertInfo = false;
 		});
 	}
 	else {
@@ -92,6 +96,28 @@ function insertProfile() {
 		isInsertProfile = false;
 	}
 }
+
+function insertPaneInfo() {
+	if (!isInsertInfo) {
+		$.ajax({
+			  url: "JSP/info.jsp",
+			  success: function(data) {
+			  }
+		}).done(function(data){
+			$('#pane').remove();
+			$('.arrow-top').remove();
+			$('#popupSection').append(data);
+			isInsertInfo = true;
+			isInsertProfile = false;
+		});
+	}
+	else {
+		$('#paneInfo').remove();
+		$('.arrow-topInfo').remove();
+		isInsertInfo = false;
+	}
+} 
+
 
 function userNotPresent() {
 	$('body').append('<div id="userNotPresent"><p>Utente non presente, Registrati.</p>'+
