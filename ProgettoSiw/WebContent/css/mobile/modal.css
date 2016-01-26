@@ -1,0 +1,81 @@
+@CHARSET "UTF-8";
+
+.modal {
+	
+	position: fixed!important;
+	overflow-y: auto!important;
+}
+
+.collection .collection-item.avatar {
+    min-height: 150px!important;
+    height: auto!important;
+  /*   position: relative; */
+}
+
+.collection .collection-item {
+    line-height: unset!important;
+}
+
+.collection .collection-item.avatar .circle {
+    position: absolute;
+    width: 150px!important;
+    height: 150px!important;
+    overflow: hidden;
+    left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.title {
+    font-size: 23px!important;
+    
+    position: absolute!important;
+    left: 180px!important;
+    
+}
+
+
+.collection .collection-item.avatar p {
+	color: #000!important;
+	
+	font-size: 23px!important;
+	
+	position: absolute!important;
+    top: 40px!important;
+	left: 180px!important;
+}
+
+#container {
+	position: absolute!important;
+    top: 90px!important;
+	left: 180px!important;
+}
+
+#description {
+	position: absolute;
+	
+	left: 55%;
+	width: 45%;
+	height: 90%;
+	overflow: auto;
+	
+	font-size: 18px!important;
+	
+}
+
+.inputCommento {
+	position: absolute;
+	
+	left: 55%;
+	width: 45%;
+	height: 90%;
+	overflow: auto;
+	
+	font-size: 18px!important;
+	
+}
+
+h4 {
+	font-size: 25px!important;
+}
+

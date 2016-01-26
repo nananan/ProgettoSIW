@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+.collapsible-body p {
+/* 	margin: 0px!important; 
+	margin-left: 5px;
+	margin-top: 0px; */
+	padding: 0rem!important;
+}
+
+#title p {
+	position: relative;
+	float: top;
+	
+	color: #000;
+	
+/* 	margin-left: 130px;
+	margin-bottom: 0px;
+	margin-top: 0px; */
+	
+	font-family:Liberation Serif Bold Italic;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: default;
+}
+
+#info p  {
+/* 	margin-left: 130px;
+	margin-bottom: 0px;
+	margin-top: 0px; */
+	
+	color: #000;
+	
+	font-family:Liberation Serif Bold Italic;
+    font-size: 28x;
+    cursor: default;
+}
+
+#line {
+	position: relative;
+	display: flex;
+	width: 98%!important;
+	margin: 10px 5px 5px 10px!important;
+	color: #555;
+	
+	flex: 1 1 0%;
+}

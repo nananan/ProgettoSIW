@@ -26,8 +26,9 @@ if (arrDishId.isArray()) {
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	Date date = new Date();
 	
-	int posPrimo = 5, posSecondo = 35, posContorno = 65;
-	int posTopPrimo = 0, posTopSecondo = 0, posTopContorno = 0;
+	int somm = 33;
+	int posPrimo = 5;
+	int posTop = 0;
 	int countPrimo = 1, countSecondo = 1, countContorno = 1;
 	int contImage = 0;
 	
@@ -47,7 +48,34 @@ if (arrDishId.isArray()) {
 			if (objNode.get("category").asText().equals("1")) {
 				
 %>
-			<div id="dishPrimo">
+			<div id="dishPrimo" style="text-align:center;">
+				<div>
+					<a id="dishMenu">
+						<img onclick="setBorderSelect(<%=posTop%>,<%=posPrimo%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
+					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Primo</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
+				</div>
+		            	
+	           	<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento"
+	           	 style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%" ></textarea>
+				
+				<div id="rating<%=contImage%>">
+		  			<div id=container style="position:absolute; top:<%=posTop+23%>%; left:<%=posPrimo+somm%>%">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+					</div>
+				</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
+	         </div>
+			
+
+<!--  -->
+			<%-- <div id="dishPrimo">
 					<p id="categoryDish" style="top:<%=posTopPrimo%>%; left:<%=posPrimo+10%>%">Primo</p>
 					<p id="nameDish" style="top:<%=posTopPrimo+5%>%; left:<%=posPrimo+5%>%"><%=objNode.get("name").asText()%></p>
 					<a id="dish" class="dish<%=contImage%>">
@@ -64,15 +92,41 @@ if (arrDishId.isArray()) {
 		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>
 				</div>
-			</div>
+			</div> --%>
 <%			
 				countPrimo++;
-				posTopPrimo += 100;
+				posTop += 33;
 			}
 			else if (objNode.get("category").asText().equals("2")) {
 %>
 
-			<div id="dishSecondo">
+			<div id="dishSecondo" style="text-align:center;">
+				<div>
+					<a id="dishMenu">
+						<img onclick="setBorderSelect(<%=posTop%>,<%=posPrimo%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
+					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Secondo</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
+				</div>
+		            	
+	           	<textarea id="<%=contImage%>" class="inputCommento" type="text" 
+	           	name="commento" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%" ></textarea>
+				
+				<div id="rating<%=contImage%>">
+		  			<div id=container style="position:absolute; top:<%=posTop+23%>%;
+		  			 left:<%=posPrimo+somm%>%">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+					</div>
+				</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
+	         </div>
+
+			<%-- <div id="dishSecondo">
 					<p id="categoryDish" style="top:<%=posTopSecondo%>%; left:<%=posSecondo+10%>%">Secondo</p>
 		            	
 					<p id="nameDish" style="top:<%=posTopSecondo+5%>%; left:<%=posSecondo+5%>%"><%=objNode.get("name").asText()%></p>
@@ -87,14 +141,41 @@ if (arrDishId.isArray()) {
 		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>
 				</div>
-			</div>
+			</div> --%>
 <%
 				countSecondo++;
-				posTopSecondo += 100;
+				posTop += 33;
 			}
 			else if (objNode.get("category").asText().equals("3")) {
 %>
-			<div id="dishContorno">
+			<div id="dishContorno" style="text-align:center;">
+				<div>
+					<a id="dishMenu">
+						<img onclick="setBorderSelect(<%=posTop%>,<%=posPrimo%>,<%=contImage%>,<%=objNode.get("category").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
+					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Contorno</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
+				</div>
+		            	
+	           	<textarea id="<%=contImage%>" class="inputCommento" type="text" name="commento"
+	           	 style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%" ></textarea>
+				
+				<div id="rating<%=contImage%>">
+		  			<div id=container style="position:absolute; top:<%=posTop+23%>%;
+		  			 left:<%=posPrimo+somm%>%">
+		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+					</div>
+				</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
+	         </div>
+
+
+			<%-- <div id="dishContorno">
 					<p id="categoryDish" style="top:<%=posTopContorno%>%; left:<%=posContorno+10%>%">Contorno</p>
 		            	
 					<p id="nameDish" style="top:<%=posTopContorno+5%>%; left:<%=posContorno+5%>%"><%=objNode.get("name").asText()%></p>
@@ -109,10 +190,10 @@ if (arrDishId.isArray()) {
 		  				<input id="valueRating<%=contImage%>" class="rating" value="<%=objNodeRating.get("points")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
 					</div>	
 				</div>
-			</div>
+			</div> --%>
 <%				
 						countContorno++;
-						posTopContorno += 100;
+						posTop += 33;
 					}
 				}
 			}
@@ -120,51 +201,3 @@ if (arrDishId.isArray()) {
 		}
 	}
 %>
-
-
-<!-- <script>
-function setBorderSelect(posTop,pos,cont,category) {
-	if (bool[cont] == null)
-		bool[cont] = false;
-	if (bool[cont] == false) {
-		if ((point +1 <= 5 && (category=="1" || category=="3")) || (point + 2 <= 5 && category=="2")) {
-			$('#quad').append('<div id="dishBorder"><a id="dishBorder'+cont+'"><img style="top:'+posTop+'%; left:'+pos+'%;" onclick="setBorderSelect('+posTop+","+pos+","+cont+","+category+')" /></a></div>');
-			bool[cont] = true;
-			if (category == "1" || category == "3")
-				point += 1;
-			else if (category == "2")
-				point += 2;
-			
-			if (posTopSelected[cont] == null)
-				posTopSelected[cont] = posTop;
-			else
-				posTopSelected.splice(cont,1,posTop);
-			if (posLeftSelected[cont] == null)
-				posLeftSelected[cont] = pos;
-			else
-				posLeftSelected.splice(cont,1,pos);
-
-			arrayCategory[cont] = category;
-			arrayCont.push(cont);
-		}
-		else
-			alert("Hai superato i punti.");
-	}
-	else {
-		$("#dishBorder"+cont).remove();
-		bool[cont] = false;
-		if (category == "1" || category == "3")
-			point -= 1;
-		else if (category == "2")
-			point -= 2;
-		
-	}
-	if (point <= 5) {
-		$('#point').remove();
-		$('body').append('<p id="point">POINT:'+point+'</p>');
-		
-	} else {
-		alert("Hai superato i punti.");
-	}
-}
-</script> -->

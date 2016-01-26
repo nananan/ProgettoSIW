@@ -12,35 +12,34 @@
 	<script type="text/javascript" src="Javascript/pageMenu.js"></script>
 	<script type="text/javascript" src="Javascript/login.js"></script>
 	<script type="text/javascript" src="Javascript/loginManager.js"></script>
-	<title>Mensa Martensson</title>
+	<title>Mensa Centro Residenziale</title>
 </head>
 <body>
-
-	<script type="text/javascript">
-		var json = eval("("+localStorage["user"]+")");
-	
-		if (json != null)
-			simpleLogin(json);
-	</script>
 	
 
 	<ul id="menu">
 		<li><a href="main.html">Home</a></li>
 		<li><a href="map.html">Map</a></li>
 		<li><a onclick="insertPaneInfo()">Info</a></li>
-		<li><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
+		<li id="loginKeyLi"><a id="loginKey" onclick="insertPaneLogin()">Login</a></li>
 	</ul>
+	
+	<script>
+		var json = eval("("+localStorage["user"]+")");
+		if (json != null)
+			simpleLogin(json);
+	</script>
 	
 	
 	<div id="slideshow">
 	   <div>
-	     <img src="images/mensaMartensson/image1.jpg" width="900" height="350">
+	     <img src="images/mensaCR/image1.jpg" width="900" height="350">
 	   </div>
 	   <div>
-	     <img src="images/mensaMartensson/image2.jpg" width="900" height="350">
+	     <img src="images/mensaCR/image2.jpg" width="900" height="350">
 	   </div>
 	   <div>
-	     <img src="images/mensaMartensson/image3.jpg" width="900" height="350">
+	     <img src="images/mensaCR/image3.jpg" width="900" height="350">
 	   </div>
 	</div>
 

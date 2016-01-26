@@ -20,6 +20,19 @@ function insertPaneLogin() {
 	});
 }
 
+function insertPaneLoginMobile() {
+	
+	$.ajax({
+		  url: "JSP/login.jsp",
+		  success: function(data) {
+			  $('body').append(data)
+		  }
+		}).done(function(data){
+			$('#paneLogin').toggle();
+	});
+}
+
+
 function deletePanelLogin() {
 	$('#paneBottomLogin').remove();
 	$('#paneLogin').remove();
@@ -64,15 +77,65 @@ function executeLogin() {
 	});
 }
 
+function executeLoginMobile() {
+	$.ajax({
+		type : "POST",
+		url : 'Login',
+		data : {
+			'username' : $("#user").val(),
+			'password' : $("#pwd").val()
+		},
+		success : function(data) {
+			localStorage["user"] = data;
+			var jsonResp = eval("("+data+")");
+			if (jsonResp["user"] != "null") {
+				deleteLoginAndInsertNameUserMobile(jsonResp["username"]);
+			}
+			else {
+				userNotPresent();
+			}
+		},
+		 error: function (data) {
+              alert("ERRORE");
+        }
+	});
+}
+
 
 function deleteLoginAndInsertNameUser(username) {
 	$('#paneLogin').remove();
 	$('#paneBottomLogin').remove();
-	$('#menu li').eq(3).remove();
 	
+	$('#loginKeyLi').remove();
+	
+//	$('#menu li').eq(3).remove();
 //	$('ul#menu').last().append('<li><a id="exitKey" onclick="executeLogOut()">Exit</a></li>');
 	$('body').append('<div id="nameUser"><div id="quadName" onclick="insertProfile()">'+username+'<div></div>');
 }
+
+
+function deleteLoginAndInsertNameUserMobile(username) {
+	
+	$.ajax({
+		  url: "JSP/profileMobile.jsp",
+		  success: function(data) {
+			  $('#paneLogin').remove();
+			  $('#paneBottomLogin').remove();
+			  
+			  $('#loginKeyLi').remove();
+			  
+			  $('ul#menuCollapsibleMain').append('<li> <div class="collapsible-header"><a>'+username+'</a></div>'
+					  +'<div class="collapsible-body">'+data+'</div>'
+					  +'</li>');
+			  $('ul#menuCollapsibleIndex').append('<li> <div class="collapsible-header"><a>'+username+'</a></div>'
+					  +'<div class="collapsible-body">'+data+'</div>'
+					  +'</li>');
+		  }
+		});
+	
+	
+}
+
 
 isInsertProfile = false;
 isInsertInfo = false;

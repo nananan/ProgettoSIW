@@ -3,7 +3,7 @@
 <link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="css/mensaCR.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/mensaCR.css"> -->
 <script src="Javascript/star-rating.js" type="text/javascript"></script>
 
 <%

@@ -9,8 +9,9 @@
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	Date date = new Date();
 	
-	int posPrimo = 5, posSecondo = 35, posContorno = 65;
-	int posTopPrimo = 0, posTopSecondo = 0, posTopContorno = 0;
+	int somm = 33;
+	int posPrimo = 5;
+	int posTop = 0;
 	int countPrimo = 1, countSecondo = 1, countContorno = 1;
 	
 	String dailyMenu = JsonDBManager.getInstance().getMenuDaily(dateFormat.format(date));
@@ -23,103 +24,106 @@
 %>
 			<div id="dishPrimo" style="text-align:center;">
 				<div>
-					<p id="categoryDish" style="top:<%=posTopPrimo%>%; left:<%=posPrimo+10%>%">Primo</p>
-				</div>
-				<div>
-					<p id="nameDish" style="top:<%=posTopPrimo+5%>%; left:<%=posPrimo+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
-				<div>
 					<a id="dishMenu">
-						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style=" top:<%=posTopPrimo+15%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
+						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Primo</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 		            	
 	           	<% if(!objNode.get("description").asText().equals("null")) { %>
 	            	<div>
-	            		<p id="descriptionDish" style="top:<%=posTopPrimo+60%>%; left:<%=posPrimo%>%"><%=objNode.get("description").asText()%></p>
+	            		<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("description").asText()%></p>
 	           		</div>
 	           	<% } else { %>
 		            <div>
-		            	<p id="descriptionDish" style="top:<%=posTopPrimo+60%>%; left:<%=posPrimo%>%">Descrizione non presente</p>
+		            	<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%">Descrizione non presente</p>
 	            	</div>
 				<% } %>
 				
-	  			<div id=container style="position:absolute; top:<%=posTopPrimo+85%>%; left:<%=posPrimo%>%">
+	  			<div id=container style="position: absolute; top:<%=posTop+23%>%; left:<%=posPrimo+somm%>%">
 	  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa" disabled>
 				</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
 	         </div>   	
-			
 <%			
 				countPrimo++;
-				posTopPrimo += 100;
+				posTop += 33;
 			}
 			else if (objNode.get("category").asText().equals("2")) {
 %>
 			<div id="dishSecondo" style="text-align:center;">
 				<div>
-					<p id="categoryDish" style="top:<%=posTopSecondo%>%; left:<%=posSecondo+10%>%">Secondo</p>
-				</div>
-		            	
-				<div>
-					<p id="nameDish" style="top:<%=posTopSecondo+5%>%; left:<%=posSecondo+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
-				<div>
 					<a id="dishMenu">
-						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style="top:<%=posTopSecondo+15%>%; left:<%=posSecondo%>%" src="<%=objNode.get("image_url").asText()%>"/>
+						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Secondo</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 		            	
 	           	<% if(!objNode.get("description").asText().equals("null")) { %>
 	            	<div>
-	            		<p id="descriptionDish" style="top:<%=posTopSecondo+60%>%; left:<%=posSecondo%>%"><%=objNode.get("description").asText()%></p>
+	            		<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("description").asText()%></p>
 	           		</div>
 	           	<% } else { %>
 		            <div>
-		            	<p id="descriptionDish" style="top:<%=posTopSecondo+60%>%; left:<%=posSecondo%>%">Descrizione non presente</p>
+		            	<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%">Descrizione non presente</p>
 	            	</div>
 				<% } %>
 				
-	  			<div id=container style="position:absolute; top:<%=posTopSecondo+85%>%; left:<%=posSecondo%>%">
+	  			<div id=container style="position: absolute; top:<%=posTop+23%>%; left:<%=posPrimo+somm%>%">
 	  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa" disabled>
 				</div>
-			</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
+	         </div>
 <%
 				countSecondo++;
-				posTopSecondo += 100;
+				posTop += 33;
 			}
 			else if (objNode.get("category").asText().equals("3")) {
 %>
-			<div id="dishContorno">
-				<div>
-					<p id="categoryDish" style="top:<%=posTopContorno%>%; left:<%=posContorno+10%>%">Contorno</p>
-				</div>
-		            	
-				<div>
-					<p id="nameDish" style="top:<%=posTopContorno+5%>%; left:<%=posContorno+5%>%"><%=objNode.get("name").asText()%></p>
-				</div>
+				<div id="dishContorno" style="text-align:center;">
 				<div>
 					<a id="dishMenu">
-						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style="top:<%=posTopContorno+15%>%; left:<%=posContorno%>%" src="<%=objNode.get("image_url").asText()%>"/>
+						<img onclick="showComment(<%=objNode.get("id").asText()%>)" style=" top:<%=posTop%>%; left:<%=posPrimo%>%" src="<%=objNode.get("image_url").asText()%>"/>
 					</a>
+				</div>
+				<div>
+					<p id="categoryDish" style="top:<%=posTop%>%; left:<%=posPrimo+somm%>%">Contorno</p>
+				</div>
+				<div>
+					<p id="nameDish" style="top:<%=posTop+2%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("name").asText()%></p>
 				</div>
 		            	
 	           	<% if(!objNode.get("description").asText().equals("null")) { %>
 	            	<div>
-	            		<p id="descriptionDish" style="top:<%=posTopContorno+60%>%; left:<%=posContorno%>%"><%=objNode.get("description").asText()%></p>
+	            		<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%"><%=objNode.get("description").asText()%></p>
 	           		</div>
 	           	<% } else { %>
 		            <div>
-		            	<p id="descriptionDish" style="top:<%=posTopContorno+60%>%; left:<%=posContorno%>%">Descrizione non presente</p>
+		            	<p id="descriptionDish" style="top:<%=posTop+5%>%; left:<%=posPrimo+somm%>%">Descrizione non presente</p>
 	            	</div>
 				<% } %>
 				
-	  			<div id=container style="position:absolute; top:<%=posTopContorno+85%>%;  left:<%=posContorno%>%">
+	  			<div id=container style="position: absolute; top:<%=posTop+23%>%; left:<%=posPrimo+somm%>%">
 	  				<input class="rating" value="<%=objNode.get("rating")%>" min="0" max="5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa" disabled>
-				</div>	
-			</div>
+				</div>
+				
+				<hr id="lineBottom" style="top:<%=posTop+29%>%;" class="hr"></hr>
+	         </div>
 <%
 				countContorno++;
-				posTopContorno += 100;
+				posTop += 33;
 			}
 		}
 	}

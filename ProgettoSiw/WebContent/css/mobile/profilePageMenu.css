@@ -1,0 +1,145 @@
+@CHARSET "UTF-8";
+
+/* * {
+	box-sizing: content-box !important;
+} */
+
+/* #pane {
+	
+	width: 25%;
+	height: 30%;
+	
+	position: absolute;
+	top: 12%;
+	right: 7%;
+	
+	background-color: #862e2e;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	
+	-webkit-box-shadow: 0 0 5px 1px #333;
+	-moz-box-shadow: 0 0 5px 1px #333;
+	box-shadow: 0 0 5px 1px #333;
+	
+	padding: 20px;
+	float: left;
+	box-sizing: content-box !important;
+} */
+
+#panelForImage {
+	margin: 0px 70px 0px 7%;
+	float:top;
+}
+
+#panelForImage img {
+	width: 100px;
+	height: 100px;
+
+	position: relative;
+	
+	border-radius: 50%; 
+	border:solid 2px #000; 
+	margin-bottom:10px
+}
+
+#panelForImage p {
+	/* margin-left: 130px;
+	margin-bottom: 0px;
+	margin-top: 0px; */
+	color: #000;
+	margin-top: 0px;
+	text-align: center;
+	font-family:Liberation Serif Bold Italic;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#panelForInformation {
+	position: relative;
+
+}
+
+#username p {
+	position: relative;
+	float: top;
+	
+	color: #000;
+	
+	margin-left: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	
+	font-family:Liberation Serif Bold Italic;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: default;
+}
+
+#email p  {
+	margin-left: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	
+	color: #000;
+	
+	font-family:Liberation Serif Bold Italic;
+    font-size: 28px;
+    cursor: default;
+}
+
+#line {
+	position: relative;
+	display: flex;
+	width: 98%!important;
+	margin: 10px 0px 5px 10px!important;
+	color: #555;
+	
+	flex: 1 1 0%;
+}
+
+#adminButton {
+	padding: 5px 20px 5px !important;
+	font-size: 25px !important;
+	background-color: #42A268;
+	font-weight: bold;
+	text-shadow: 1px 1px #42A268;
+	color: #ffffff;
+	border-radius: 5px; 
+ 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #42A268;
+	cursor: pointer;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	
+	margin: 0px 0px 0px 5px;
+
+}
+
+#exitButton {
+	position: relative;
+/* 	bottom: 2%; */
+/* 	right: 2%; */
+	
+	width: 120px;
+	
+	padding: 5px 15px 5px !important;
+	font-size: 25px !important;
+	background-color: #7f7f7f;
+	font-weight: bold;
+	text-shadow: 1px 1px #7f7f7f;
+	color: #ffffff;
+	border-radius: 5px; 
+ 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #7f7f7f;
+	cursor: pointer;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	
+	margin: 10px 0px 5px 120px;
+}
