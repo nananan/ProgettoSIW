@@ -9,6 +9,8 @@
     
     width: auto;
     height: auto;
+    
+    z-index: 1005;
 }
 
 .form2 input[type="file"] {

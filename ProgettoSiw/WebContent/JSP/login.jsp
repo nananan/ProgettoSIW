@@ -34,19 +34,22 @@
 	<div class="buttons">
 	   <input onclick="executeLoginMobile()" type="button" value="Login" />
 	</div>
-<%	} %>
+	<span>
+	  <a onclick="insertPaneForRegisterMobile()" class="register">Register</a>
+	</span>
+<%	}
 
-<%-- else  { %> 
+ else  { %> 
 
 	<div class="buttons">
 	   <input onclick="executeLogin()" type="button" value="Login" />
 	</div>
-	
-<% } %> --%>
-	
 	<span>
 	  <a onclick="insertPaneForRegister()" class="register">Register</a>
 	</span>
+	
+<% } %>
+	
 	
 	<div class="hr"></div>
 

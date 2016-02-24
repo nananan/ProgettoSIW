@@ -39,12 +39,30 @@ function deletePanelLogin() {
 }
 
 function deletePanelRegister() {
+	$('#themeRegister').remove();
 	$('#register').remove();
 }
+
+function deletePanelRegisterMobile() {
+	$('#modalRegister').remove();
+	$('#themeRegister').remove();
+}
+
 
 function insertPaneForRegister() {
 	$.ajax({
 		  url: "register.html",
+		  success: function(data) {
+			  $('body').append(data)
+		  }
+		}).done(function(data){
+			$('#register').toggle();
+	});
+}
+
+function insertPaneForRegisterMobile() {
+	$.ajax({
+		  url: "JSP/mobile/register.jsp",
 		  success: function(data) {
 			  $('body').append(data)
 		  }
@@ -117,7 +135,7 @@ function deleteLoginAndInsertNameUser(username) {
 function deleteLoginAndInsertNameUserMobile(username) {
 	
 	$.ajax({
-		  url: "JSP/profileMobile.jsp",
+		  url: "JSP/mobile/profile.jsp",
 		  success: function(data) {
 			  $('#paneLogin').remove();
 			  $('#paneBottomLogin').remove();
@@ -132,8 +150,6 @@ function deleteLoginAndInsertNameUserMobile(username) {
 					  +'</li>');
 		  }
 		});
-	
-	
 }
 
 
